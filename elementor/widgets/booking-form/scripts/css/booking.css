@@ -1,0 +1,100 @@
+.display-booking-form{
+    position: fixed;
+    background-color: rgba(0, 0, 0, .8);
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -100;
+    display: none;
+    text-align: left;
+}
+
+.booking-form-content{
+    width: 1110px;
+    max-width: 100%;
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0px 20px 40px rgba(112, 106, 106, 0.05);
+    border-radius: 5px;
+}
+.booking-form-content input[type="text"],
+.booking-form-content input[type="email"],
+.booking-form-content input[type="tel"],
+.booking-form-content select,
+.booking-form-content input[type="number"]{
+     height: 50px;
+     padding-left: 10px;
+     border: 1px solid #E3E8EF     ;
+}
+
+.booking-form-content input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #999999;
+    opacity: 1; /* Firefox */
+  }
+  
+  .booking-form-content input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #999999;
+  }
+  
+  .booking-form-content input::-ms-input-placeholder { /* Microsoft Edge */
+    color: #999999;
+  }
+  
+  .booking-form-content textarea{
+    height: 150px;
+    border: 1px solid #E3E8EF;
+    margin-bottom: 23px;
+}
+.close-booking-form{
+    position: absolute;
+    right: 50px;
+    background: #F6F8FA;
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+    text-align: center;
+    color: #9096A8 !important;
+    top: 47px;
+    z-index: 999999999;
+}
+
+.booking-form-content .form-group {
+    margin-bottom: 10px;
+}
+.form-wrapper .col-md-4 > h5{
+    margin-bottom: 20px;
+}
+.wpcf7-submit.btn.btn-info{
+    background-color: #EE3131;
+    border: 1px solid #EE3131;
+    cursor: pointer;
+    color: #fff;
+    padding: 18px 42px 18px 42px;
+    transition: all .4s;
+    text-transform: uppercase;
+    margin-right: 10px;
+    margin-top: 15px;
+    font-weight: 500;
+    font-size: 18px;
+}
+.wpcf7-submit.btn.btn-info:hover{
+    background-color: #b60909;
+}
+.submit-form{
+    position: relative;
+}
+.submit-form .wpcf7-spinner{
+    position: absolute;
+    top: 100%;
+    left: 48%;
+}
+
+.booking-inner-title{
+    color: #141C2A;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}

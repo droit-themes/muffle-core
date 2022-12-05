@@ -1,0 +1,9 @@
+/**=== Custom Site Logo ===**/
+.carwash_search .nav-item{
+ padding-top: 0px !important;
+ padding-bottom: 0px !important;
+}
+
+.carwash_search .search_cart:before{
+    height: 0;
+}
