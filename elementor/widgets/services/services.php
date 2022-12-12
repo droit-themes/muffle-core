@@ -48,6 +48,28 @@ class DRTH_ESS_Services extends Widget_Base{
     {
         do_action('dl_widgets/test/register_control/start', $this);
 
+        $this->start_controls_section(
+            'muffle_service_list',
+            [
+                'label' => __('Service Style', 'muffle-core'),
+            ]
+        );
+
+        $this->add_control(
+			'service_style',
+			[
+				'label' => esc_html__( 'Style', 'muffle-core' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'one',
+				'options' => [
+					'one' => esc_html__( 'Style One', 'muffle-core' ),
+					'two' => esc_html__( 'Style Two', 'muffle-core' ),
+				],
+			]
+		);
+
+        $this->end_controls_section();
+
         // ---Start Blog Setting
         $this->start_controls_section(
             'Blog_filter', [
@@ -100,14 +122,7 @@ class DRTH_ESS_Services extends Widget_Base{
 
     public function _content_control(){
         //start subscribe layout
-        $this->start_controls_section(
-            '_dl_pr_test_layout_section',
-            [
-                'label' => __('Layout', 'muffle-core'),
-            ]
-        );
-
-        $this->end_controls_section();
+        
         //start subscribe layout end
 
         $this->start_controls_section(
@@ -284,6 +299,9 @@ class DRTH_ESS_Services extends Widget_Base{
     protected function render()
     {   
         $settings = $this->get_settings_for_display();
+
+        $style_design = $settings['exclude'] ;
+
         extract($settings);
         $blogFeature = new WP_Query( array(
             'post_type'      => 'service',

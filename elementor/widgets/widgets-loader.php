@@ -170,6 +170,13 @@ class Widgets_Loader{
                 'source' => 'local',
             ],
 
+            'team-member' => [
+	            'title' => __( 'Team Member', 'muffle-coro' ),
+	            'js' => [''],
+	            'css' => ['team-member.css'],
+	            'source' => 'local',
+            ],
+
 
         ]);
     }

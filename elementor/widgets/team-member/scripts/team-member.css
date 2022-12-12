@@ -1,0 +1,161 @@
+.team {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.container {
+  width: 1290px;
+}
+.section-title {
+  text-align: center;
+}
+.section-title h3 {
+  background: #eeecf8;
+  border-radius: 3px;
+  display: -webkit-inline-box;
+  padding: 10px 15px 10px 15px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #4c4c63;
+}
+.section-title h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 94px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #2c264a;
+  padding: 0px 0px 55px 0px;
+  margin: 0;
+}
+.section-title h1 span {
+  color: #553bf9;
+}
+.team-thumbnail:hover .author-img {
+  transform: scale(1.1);
+  transition: 0.3s;
+  border-radius: 10px;
+}
+.team-thumbnail .author-img {
+  transition: 0.3s;
+}
+.team-thumbnail {
+  overflow: hidden;
+  transition: 0.3s;
+  margin: 0 auto;
+}
+.img-fluid {
+  width: 100%;
+}
+.author-content {
+  text-align: center;
+}
+.author-content a {
+  text-decoration: none;
+}
+.author-name {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: #181b31;
+  text-decoration: none;
+  margin: 20px 0px 6px 0px;
+}
+.author-content:hover a .author-name {
+  color: #553bf9;
+}
+.author-designation {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 36px;
+  color: #4c4c63;
+  margin-bottom: 13px;
+}
+.author-social-icon {
+  padding: 0px 0px 54px 0px;
+}
+.author-social-icon i {
+  color: #9f9fa3;
+  font-size: 18px;
+  margin-right: 12px;
+}
+.author-social-icon svg:hover {
+  color: #553bf9;
+}
+/*animations */
+#shape2 {
+  position: absolute;
+  left: 389px;
+  top: 317px;
+  transition: 0.5s;
+}
+#shape1 {
+  position: absolute;
+  right: 250px;
+  top: 400px;
+  transition: 0.5s;
+}
+
+/* new css */
+.team-thumbnail {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 1440px) {
+  #shape2 {
+    left: 179px;
+  }
+  #shape1 {
+    right: 100px;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    width: auto;
+  }
+  .team-thumbnail {
+    width: auto;
+  }
+  #shape2 {
+    left: 75px;
+  }
+  #shape1 {
+    right: 25px;
+  }
+  .team {
+    background-size: auto;
+  }
+}
+@media (max-width: 768px) {
+  .section-title h1 {
+    font-size: 60px;
+    line-height: 70px;
+    padding: 0px 0px 80px 0px;
+  }
+  #shape1 {
+    top: 300px;
+  }
+}
+@media (max-width: 575px) {
+  .section-title h1 {
+    font-size: 45px;
+    line-height: 52px;
+    padding: 0px 0px 60px 0px;
+  }
+  #shape2 {
+    left: 30px;
+    top: 200px;
+    z-index: -1;
+  }
+  #shape1 {
+    right: 30px;
+    top: 200px;
+    z-index: -1;
+  }
+}
