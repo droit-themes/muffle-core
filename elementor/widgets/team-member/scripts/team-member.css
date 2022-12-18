@@ -88,74 +88,74 @@
 .author-social-icon svg:hover {
   color: #553bf9;
 }
-/*animations */
-#shape2 {
-  position: absolute;
-  left: 389px;
-  top: 317px;
-  transition: 0.5s;
-}
-#shape1 {
-  position: absolute;
-  right: 250px;
-  top: 400px;
-  transition: 0.5s;
-}
-
 /* new css */
 .team-thumbnail {
   margin-bottom: 50px;
 }
 
-@media (max-width: 1440px) {
-  #shape2 {
-    left: 179px;
-  }
-  #shape1 {
-    right: 100px;
-  }
+/* new css */
+.team_style_one .team_item {
+  position: relative;
+  background-color: rgba(15, 15, 15, 1);
 }
-@media (max-width: 1024px) {
-  .container {
-    width: auto;
-  }
-  .team-thumbnail {
-    width: auto;
-  }
-  #shape2 {
-    left: 75px;
-  }
-  #shape1 {
-    right: 25px;
-  }
-  .team {
-    background-size: auto;
-  }
+.team_style_two .team_item {
+  position: relative;
+  background-color: #fff;
 }
-@media (max-width: 768px) {
-  .section-title h1 {
-    font-size: 60px;
-    line-height: 70px;
-    padding: 0px 0px 80px 0px;
-  }
-  #shape1 {
-    top: 300px;
-  }
+.team_style_one .team_content {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  visibility: hidden;
 }
-@media (max-width: 575px) {
-  .section-title h1 {
-    font-size: 45px;
-    line-height: 52px;
-    padding: 0px 0px 60px 0px;
-  }
-  #shape2 {
-    left: 30px;
-    top: 200px;
-    z-index: -1;
-  }
-  #shape1 {
-    right: 30px;
-    top: 200px;
-    z-index: -1;
-  }
+.team_style_one .team_item:hover .team_content {
+  visibility: visible;
+  z-index: 8;
+}
+.team_style_one .team_item .team-thumbnail {
+  z-index: 0;
+}
+.team_style_one .team_item .team-thumbnail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: 0.5s;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(27, 27, 27, 0) 39.6%, #1b1b1b 100%);
+}
+.team_style_one .team_item:hover .team-thumbnail::before {
+  opacity: 0.6;
+}
+
+/* style two */
+.team_style_two .team_item:hover .team-thumbnail {
+  z-index: 0;
+}
+.team_style_two .team_item .team-thumbnail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: 0.5s;
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 39.6%,
+    #ffffff 100%
+  );
+}
+.team_style_two .team_item:hover .team-thumbnail::before {
+  opacity: 0.6;
 }

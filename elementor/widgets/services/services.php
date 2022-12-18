@@ -111,7 +111,7 @@ class DRTH_ESS_Services extends Widget_Base{
         $this->_content_control();
         
         //style section
-        $this->_styles_control();
+        // $this->_styles_control();
         
         do_action('dl_widgets/test/register_control/end', $this);
 
@@ -137,16 +137,52 @@ class DRTH_ESS_Services extends Widget_Base{
                 'name' => 'feature_background',
                 'label' => __( 'Background', 'muffle-core' ),
                 'types' => [ 'classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .sub-content',
+                'selector' => '{{WRAPPER}} .sub-content-2',
             ]
         );
-
+        $this->add_control(
+            'border_radius',
+            [
+                'label' => __( 'Border Radius', 'muffle-core' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .sub-content-2' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'border',
+				'selector' => '{{WRAPPER}} .sub-content-2',
+			]
+		);
+        $this->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'box_shadow',
+				'selector' => '{{WRAPPER}} .fung-2:hover',
+			]
+		);
+        $this->add_responsive_control(
+            'content_padding',
+            [
+                'label' => __( 'Padding', 'muffle-core' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .sub-content-2' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'after',
+            ]
+        );
         $this->add_control(
             'feature_title_color', [
                 'label' => __( 'Title Text Color', 'muffle-core' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .single-col-min h3' => 'color: {{VALUE}};', 
+                    '{{WRAPPER}} .single-col .service_title' => 'color: {{VALUE}};', 
                 ],
             ]
         );
@@ -155,8 +191,21 @@ class DRTH_ESS_Services extends Widget_Base{
             Group_Control_Typography::get_type(), [
                 'label' => 'Title Typography',
                 'name' => 'feature_typography_title',
-                'selector' => '{{WRAPPER}} .single-col-min h3',
+                'selector' => '{{WRAPPER}} .single-col .service_title',
+                'separator' => 'after',
                 
+            ]
+        );
+        $this->add_responsive_control(
+            'content_margin',
+            [
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__( 'Content Margin', 'muffle-core' ),
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .single-col p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
             ]
         );
 
@@ -165,8 +214,9 @@ class DRTH_ESS_Services extends Widget_Base{
                 'label' => __( 'Content Text Color', 'muffle-core' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .single-col-min p' => 'color: {{VALUE}};', 
+                    '{{WRAPPER}} .single-col p' => 'color: {{VALUE}};', 
                 ],
+                
             ]
         );
 
@@ -174,7 +224,8 @@ class DRTH_ESS_Services extends Widget_Base{
             Group_Control_Typography::get_type(), [
                 'label' => 'Content Typography',
                 'name' => 'feature_typography_content',
-                'selector' => '{{WRAPPER}} .single-col-min p',
+                'selector' => '{{WRAPPER}} .single-col p',
+                
                 
             ]
         );
@@ -184,8 +235,9 @@ class DRTH_ESS_Services extends Widget_Base{
                 'label' => __( 'Button Text Color', 'muffle-core' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .single-col-min a.btn' => 'color: {{VALUE}};', 
+                    '{{WRAPPER}} .single-col .learn_btn_two' => 'color: {{VALUE}};', 
                 ],
+                'separator' => 'before',
             ]
         );
 
@@ -193,106 +245,14 @@ class DRTH_ESS_Services extends Widget_Base{
             Group_Control_Typography::get_type(), [
                 'label' => 'Button Typography',
                 'name' => 'feature_typography_button',
-                'selector' => '{{WRAPPER}} .single-col-min a.btn',
+                'selector' => '{{WRAPPER}} .single-col .learn_btn_two',
                 
             ]
         );
+        
 
     $this->end_controls_section();   ///(Style) End The Blog Title Section
 
-    $this->start_controls_section(
-        'service_style', [
-            'label' => __( 'Service Style', 'muffle-core' ),
-            'tab'   => Controls_Manager::TAB_STYLE,
-        ]
-    );
-	
-    
-    $this->add_group_control(
-            \Elementor\Group_Control_Background::get_type(),
-            [
-                'name' => 'content_background',
-                'label' => __( 'Content Background', 'muffle-core' ),
-                'types' => [ 'classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .sub-content-2',
-            ]
-        );
-    
-    $this->add_control(
-        'title_color', [
-            'label' => __( 'Title Text Color', 'muffle-core' ),
-            'type' => Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .sub-content-2 a' => 'color: {{VALUE}};', 
-            ],
-        ]
-    );
-
-    $this->add_group_control(
-        Group_Control_Typography::get_type(), [
-            'label' => 'Title Typography',
-            'name' => 'typography_title',
-            'selector' => '{{WRAPPER}} .sub-content-2 a',
-            
-        ]
-    );
-
-    $this->add_control(
-        'content_color', [
-            'label' => __( 'Content Text Color', 'muffle-core' ),
-            'type' => Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .sub-content-2 p' => 'color: {{VALUE}};', 
-            ],
-        ]
-    );
-
-    $this->add_group_control(
-        Group_Control_Typography::get_type(), [
-            'label' => 'Content Typography',
-            'name' => 'typography_content',
-            'selector' => '{{WRAPPER}} .sub-content-2 p',
-            
-        ]
-    );
-
-    $this->add_control(
-        'button_color', [
-            'label' => __( 'Button Text Color', 'muffle-core' ),
-            'type' => Controls_Manager::COLOR,
-            'selectors' => [
-                '{{WRAPPER}} .sub-content-2 a.btn' => 'color: {{VALUE}};', 
-            ],
-        ]
-    );
-
-    $this->add_group_control(
-        Group_Control_Typography::get_type(), [
-            'label' => 'Button Typography',
-            'name' => 'typography_content',
-            'selector' => '{{WRAPPER}} .sub-content-2 a.btn',
-            
-        ]
-    );
-
-    $this->end_controls_section();   ///(Style) End The Blog Title Section
-
-    }
-
-    public function _styles_control(){
-
-        $this->start_controls_section(
-            '_dl_pr_test_style_section',
-            [
-                'label' => esc_html__('Style', 'text-domain'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-
-            ]
-        );
-
-
-
-        $this->end_controls_section();
     }
 
     //Html render

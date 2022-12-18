@@ -34,7 +34,34 @@ class DRTH_ESS_Team_Member extends Widget_Base{
 
     protected function register_controls() {
 
-        // ---Start Team Member Setting
+        $team_repeater = new \Elementor\Repeater();
+        $this->start_controls_section(
+			'team_sec', [
+				'label' => __( 'Team Style', 'muffle-core' ),
+			]
+		);
+	
+		$this->add_control(
+			'team_style', [
+				'label' => esc_html__( 'Select Style', 'muffle-core' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'1' => [
+						'title' => __( 'Team One', 'muffle-core' ),
+						'icon' => 'team_01',
+					],
+					'2' => [
+						'title' => __( 'Team Two', 'muffle-core' ),
+						'icon' => 'team_02',
+					],
+				],
+				'default' => '1'
+			]
+		);
+	
+		$this->end_controls_section();
+
+        // ---Start Team Setting
         $this->start_controls_section(
             'team_filter', [
                 'label' => __( 'Team Member Settings', 'muffle-core' ),
@@ -176,6 +203,7 @@ class DRTH_ESS_Team_Member extends Widget_Base{
     protected function render() {
         $this->load_widget_script();
         $settings = $this->get_settings_for_display();
+        $team_style	= !empty($settings['team_style']) ? $settings['team_style'] : '1';
 
         $team_member = new WP_Query( array(
 		    'post_type'      => 'team',
@@ -184,8 +212,10 @@ class DRTH_ESS_Team_Member extends Widget_Base{
 		    'post__not_in'   => ! empty( $settings['exclude'] ) ? explode( ',', $settings['exclude'] ) : ''
 	    ) );
     ?>
-    
-    <section class="team">
+
+    <?php if( $team_style == 1 ){ ?>
+
+    <section class="team team_style_one">
         <div class="team-section">
             <div class="row">
                 <?php
@@ -193,7 +223,36 @@ class DRTH_ESS_Team_Member extends Widget_Base{
                         $team_member->the_post();
                         $designation = function_exists( 'get_field' ) ? get_field( 'designation' ) : '';
                 ?>
-                <div class="col-lg-3 col-md-6 author-content">
+                <div class="col-lg-4 col-md-6 author-content">
+                    <div class="team_item">
+                    <?php if(has_post_thumbnail()): ?>
+                    <div class="team-thumbnail">
+                        <?php the_post_thumbnail('full', array( 'class' => 'author-img img-fluid' )); ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="team_content">
+                    <a href="<?php the_permalink(); ?>" class="author-name"><h3 class="author-name"><?php the_title(); ?></h3></a>
+                    <h4 class="author-designation"><?php echo $designation; ?></h4>
+                    </div>
+                    </div>
+                </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
+    </section>
+
+    <?php } elseif( $team_style == 2 ){ ?>
+
+        <section class="team team_style_two">
+        <div class="team-section">
+            <div class="row">
+                <?php
+                    while( $team_member->have_posts()):
+                        $team_member->the_post();
+                        $designation = function_exists( 'get_field' ) ? get_field( 'designation' ) : '';
+                ?>
+                <div class="col-lg-4 col-md-6 author-content">
+                <div class="team_item">
                     <?php if(has_post_thumbnail()): ?>
                     <div class="team-thumbnail">
                         <?php the_post_thumbnail('full', array( 'class' => 'author-img img-fluid' )); ?>
@@ -202,10 +261,12 @@ class DRTH_ESS_Team_Member extends Widget_Base{
                     <a href="<?php the_permalink(); ?>" class="author-name"><h3 class="author-name"><?php the_title(); ?></h3></a>
                     <h4 class="author-designation"><?php echo $designation; ?></h4>
                 </div>
+                </div>
                 <?php endwhile; ?>
             </div>
         </div>
     </section>
+    <?php }else{ } ?>
     <?php 
     }
 
