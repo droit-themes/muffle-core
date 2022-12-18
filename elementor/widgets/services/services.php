@@ -332,8 +332,9 @@ class DRTH_ESS_Services extends Widget_Base{
                                 <div class="single-col">
                                    <?php the_post_thumbnail('full', array('class' => 'service_img')); ?>
                                     <div class="sub-content-2">
-                                        <a href="<?php the_permalink(); ?>"><?php echo  wp_trim_words( get_the_title(), 5, false ); ?></a>
-                                        <p><?php echo  wp_trim_words( get_the_content(), 15, false ); ?></p>
+                                        <a class="service_title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        <div class="service_content"><?php echo the_excerpt(); ?></div>
+                                        <a href="<?php the_permalink(); ?>" class="learn_btn_two service_more">Read More</a>
                                     </div>
                                 </div>
                             </div>
