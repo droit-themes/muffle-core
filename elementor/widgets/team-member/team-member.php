@@ -258,8 +258,10 @@ class DRTH_ESS_Team_Member extends Widget_Base{
                         <?php the_post_thumbnail('full', array( 'class' => 'author-img img-fluid' )); ?>
                     </div>
                     <?php endif; ?>
+                    <div class="team_content">
                     <a href="<?php the_permalink(); ?>" class="author-name"><h3 class="author-name"><?php the_title(); ?></h3></a>
                     <h4 class="author-designation"><?php echo $designation; ?></h4>
+                    </div>
                 </div>
                 </div>
                 <?php endwhile; ?>
