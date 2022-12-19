@@ -38,7 +38,7 @@
 .team-thumbnail:hover .author-img {
   transform: scale(1.1);
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 .team-thumbnail .author-img {
   transition: 0.3s;
@@ -90,7 +90,7 @@
 }
 /* new css */
 .team-thumbnail {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 /* new css */
@@ -127,7 +127,7 @@
   mix-blend-mode: multiply;
   opacity: 0;
   transition: 0.5s;
-  border-radius: 10px;
+  border-radius: 6px;
   background: linear-gradient(180deg, rgba(27, 27, 27, 0) 39.6%, #1b1b1b 100%);
 }
 .team_style_one .team_item:hover .team-thumbnail::before {
@@ -138,8 +138,8 @@
 .team_style_two .team_item .team-thumbnail img {
   -webkit-mask-image: linear-gradient(
     2deg,
-    rgba(255, 255, 255, 0) -7.4%,
-    #ffffff 45%
+    rgba(255, 255, 255, 0) 4.6%,
+    #ffffff 55%
   );
   transition: 0.5s;
   transition-timing-function: linear;
