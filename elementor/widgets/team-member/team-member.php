@@ -116,6 +116,17 @@ class DRTH_ESS_Team_Member extends Widget_Base{
                 ],
             ]
         );
+        $this->add_responsive_control(
+            'items-border-radius',
+            [
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__( 'Item Border Radius', 'muffle-core' ),
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .team_style_one .team_item, .team_style_two .team_item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->add_responsive_control(
             'thumbnail-border-radius',
