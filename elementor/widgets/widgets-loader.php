@@ -176,6 +176,12 @@ class Widgets_Loader{
 	            'css' => ['team-member.css'],
 	            'source' => 'local',
             ],
+            'testimonial-two' => [
+	            'title' => __( 'Testimonial', 'muffle-coro' ),
+	            'js' => ['testimonial-two.js'],
+	            'css' => ['testimonial-two.css'],
+	            'source' => 'local',
+            ],
 
 
         ]);
