@@ -182,6 +182,12 @@ class Widgets_Loader{
 	            'css' => ['testimonial-two.css'],
 	            'source' => 'local',
             ],
+            'video-popup' => [
+	            'title' => __( 'Video Popup', 'muffle-coro' ),
+	            'js' => ['magnify-pop/jquery.magnific-popup.min.js', 'video_popup.js'],
+	            'css' => ['video_popup.css', 'magnify-pop/magnific-popup.css'],
+	            'source' => 'local',
+            ],
 
 
         ]);
