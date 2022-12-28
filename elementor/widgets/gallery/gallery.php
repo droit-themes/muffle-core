@@ -28,11 +28,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DRTH_ESS_gallery extends Widget_Base {
 
     public function get_name() {
-        return 'roofy-gallery';
+        return 'muffle-gallery';
     }
 
     public function get_title() {
-        return __( 'Roofy Gallery', 'roofy_core' );
+        return __( 'Muffle Project', 'muffle_core' );
     }
 
     public function get_icon() {
@@ -50,16 +50,42 @@ class DRTH_ESS_gallery extends Widget_Base {
 
     public function elementor_content_control() {
 
+        $this->start_controls_section(
+            'muffle_project_list',
+            [
+                'label' => __('Project Style', 'muffle-core'),
+            ]
+        );
+
+        $this->add_control(
+			'project_style',
+			[
+				'label' => esc_html__( 'Project Style', 'muffle-core' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'one',
+				'options' => [
+					'one' => esc_html__( 'Style One [ 02 Column ] ', 'muffle-core' ),
+					'two' => esc_html__( 'Style Two [ 03 Column ]', 'muffle-core' ),
+                    'three' => esc_html__( 'Style Two [ Masonry ]', 'muffle-core' ),
+				],
+			]
+		);
+
+        $this->end_controls_section();
+
+
+
+
         // ---Start portfolio Setting
         $this->start_controls_section(
             'filter_sec', [
-                'label' => __( 'Filter', 'roofy_core' ),
+                'label' => __( 'Filter', 'muffle_core' ),
             ]
         );
 
         $this->add_control(
             'show_count', [
-                'label' => esc_html__( 'Show count', 'roofy_core' ),
+                'label' => esc_html__( 'Show count', 'muffle_core' ),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 3
             ]
@@ -67,11 +93,11 @@ class DRTH_ESS_gallery extends Widget_Base {
 
         $this->add_control(
             'order', [
-                'label' => esc_html__( 'Order', 'roofy_core' ),
+                'label' => esc_html__( 'Order', 'muffle_core' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'ASC'   => __('ASC', 'roofy_core'),
-                    'DESC'   => __('DESC', 'roofy_core'),
+                    'ASC'   => __('ASC', 'muffle_core'),
+                    'DESC'   => __('DESC', 'muffle_core'),
                 ],
                 'default' => 'ASC'
             ]
@@ -79,18 +105,18 @@ class DRTH_ESS_gallery extends Widget_Base {
 
         $this->add_control(
             'order_by', [
-                'label' => esc_html__( 'Order By', 'roofy_core' ),
+                'label' => esc_html__( 'Order By', 'muffle_core' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'modified'   => __('Modified', 'roofy_core'),
-                    'date'       => __('Date', 'roofy_core'),
-                    'rand'       => __('Rand', 'roofy_core'),
-                    'ID'         => __('ID', 'roofy_core'),
-                    'title'      => __('Title', 'roofy_core'),
-                    'author'     => __('Author', 'roofy_core'),
-                    'name'       => __('Name', 'roofy_core'),
-                    'parent'     => __('Parent', 'roofy_core'),
-                    'menu_order' => __('Menu Order', 'roofy_core'),
+                    'modified'   => __('Modified', 'muffle_core'),
+                    'date'       => __('Date', 'muffle_core'),
+                    'rand'       => __('Rand', 'muffle_core'),
+                    'ID'         => __('ID', 'muffle_core'),
+                    'title'      => __('Title', 'muffle_core'),
+                    'author'     => __('Author', 'muffle_core'),
+                    'name'       => __('Name', 'muffle_core'),
+                    'parent'     => __('Parent', 'muffle_core'),
+                    'menu_order' => __('Menu Order', 'muffle_core'),
                 ],
                 'default' => 'ID'
             ]
@@ -104,7 +130,7 @@ class DRTH_ESS_gallery extends Widget_Base {
         //---------------- Style Section --------------- //
         $this->start_controls_section(
             'portfolio_style', [
-                'label' => __( 'Filter Color', 'roofy_core' ),
+                'label' => __( 'Filter Color', 'muffle_core' ),
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -112,14 +138,14 @@ class DRTH_ESS_gallery extends Widget_Base {
         //====== Post Title Color
         $this->add_control(
             'item_title_heading', [
-                'label' => __( 'Post Title', 'roofy_core' ),
+                'label' => __( 'Post Title', 'muffle_core' ),
                 'type' => Controls_Manager::HEADING,
             ]
         );
 
         $this->add_control(
             'item_title_color', [
-                'label' => __( 'Text Color', 'roofy_core' ),
+                'label' => __( 'Text Color', 'muffle_core' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .single_program_list .single_program_list_content h4' => 'color: {{VALUE}};',
@@ -138,7 +164,7 @@ class DRTH_ESS_gallery extends Widget_Base {
         $this->add_responsive_control(
 			'margin-title',
 			[
-				'label' => esc_html__( 'Margin', 'roofy_core' ),
+				'label' => esc_html__( 'Margin', 'muffle_core' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -150,14 +176,14 @@ class DRTH_ESS_gallery extends Widget_Base {
     //====== Post Category Color
         $this->add_control(
             'item_category', [
-                'label' => __( 'Post Category', 'roofy_core' ),
+                'label' => __( 'Post Category', 'muffle_core' ),
                 'type' => Controls_Manager::HEADING,
             ]
         );
 
         $this->add_control(
             'item_category_color', [
-                'label' => __( 'Text Color', 'roofy_core' ),
+                'label' => __( 'Text Color', 'muffle_core' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .single_program_list_content .category' => 'color: {{VALUE}};',
@@ -175,7 +201,7 @@ class DRTH_ESS_gallery extends Widget_Base {
         //====== Post Content Color
         $this->add_control(
             'item_cats_heading', [
-                'label' => __( 'Content', 'roofy_core' ),
+                'label' => __( 'Content', 'muffle_core' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -207,7 +233,7 @@ class DRTH_ESS_gallery extends Widget_Base {
         
         $this->add_control(
             'item_cats_color', [
-                'label' => __( 'Text Color', 'roofy_core' ),
+                'label' => __( 'Text Color', 'muffle_core' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .single_program_list .single_program_list_content p' => 'color: {{VALUE}};',
@@ -226,7 +252,7 @@ class DRTH_ESS_gallery extends Widget_Base {
         //====== Post Tabs Color
         $this->add_control(
             'item_content_heading', [
-                'label' => __( 'Tabs Button', 'roofy_core' ),
+                'label' => __( 'Tabs Button', 'muffle_core' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -235,7 +261,7 @@ class DRTH_ESS_gallery extends Widget_Base {
         $this->add_responsive_control(
 			'margin-tabs',
 			[
-				'label' => esc_html__( 'Margin', 'roofy_core' ),
+				'label' => esc_html__( 'Margin', 'muffle_core' ),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -246,7 +272,7 @@ class DRTH_ESS_gallery extends Widget_Base {
 
         $this->add_control(
             'item_content_color', [
-                'label' => __( 'Text Color', 'roofy_core' ),
+                'label' => __( 'Text Color', 'muffle_core' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .program_list_page .filters ul li' => 'color: {{VALUE}};',
@@ -271,17 +297,21 @@ class DRTH_ESS_gallery extends Widget_Base {
         $this->load_widget_script();
         $settings = $this->get_settings_for_display();
         extract($settings); // Array to variable conversation
+        $style_design = $settings['project_style'] ;
 
         $gallery = new WP_Query(array(
-			'post_type'     => 'gallery',
+			'post_type'     => 'project',
 			'posts_per_page'=> $settings['show_count'],
 			'order' => $settings['order'],
 		));
 		$gallery_cat = get_terms(array(
-			'taxonomy' => 'gallery_type',
+			'taxonomy' => 'project_type',
 			'hide_empty' => true
 		));
 
+    ?>
+     <?php
+        if($style_design == 'one'){
     ?>
     <section class="program_list program_list_page section_padding" id="program_list">
         <div class="row">
@@ -307,7 +337,7 @@ class DRTH_ESS_gallery extends Widget_Base {
                             while ( $gallery->have_posts() ){
                                 $gallery->the_post();
                                 if( has_post_thumbnail() ) {
-                                    $cats = get_the_terms(get_the_ID(), 'gallery_type');
+                                    $cats = get_the_terms(get_the_ID(), 'project_type');
                                     $cat_slug = '';
                                     if(is_array($cats)) {
                                         foreach ($cats as $cat) {
@@ -341,6 +371,127 @@ class DRTH_ESS_gallery extends Widget_Base {
             </div>
         </div>
     </section>
+  <?php }elseif($style_design == 'two'){ ?>
+    <section class="program_list program_list_page section_padding" id="program_list">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filters">
+                    <ul>
+                    <li class="is-checked" data-filter="*">All Projects</li>
+                    <?php 
+                    if(is_array($gallery_cat)) {
+                    foreach ( $gallery_cat as $gallery_cat ) { ?>
+                            <li data-filter=".<?php echo $gallery_cat->slug ?>"><?php echo $gallery_cat->name ?></li>
+                    <?php
+                        }
+                        } 
+                    ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row grid program_list_filter">
+                    <?php
+                        if( $gallery->have_posts() ){
+                            while ( $gallery->have_posts() ){
+                                $gallery->the_post();
+                                if( has_post_thumbnail() ) {
+                                    $cats = get_the_terms(get_the_ID(), 'project_type');
+                                    $cat_slug = '';
+                                    if(is_array($cats)) {
+                                        foreach ($cats as $cat) {
+                                            $cat_slug .= $cat->slug.' ';
+                                        }
+                                    }
+                        ?>
+                        <div class="col-lg-6 col-md-6 col-sm-12 grid-item <?php echo esc_attr($cat_slug);?>">
+                             <div class="single_program_list wow fadeInUp" data-wow-delay=".4s">
+                               <?php  if( has_post_thumbnail() ){ ?>
+                               <div class="img-tabs">
+                                    <?php the_post_thumbnail('full', array('class' => 'img-fluid')) ?>
+                                </div>
+                                <?php } ?>
+                                <div class="content_box">
+                                    <div class="single_program_list_content text-hidden">
+                                        <div class="category"><?php echo $cat->name; ?></div>
+                                        <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
+                                        <div class="content" style="text-align: <?php echo esc_attr( $settings['text_align'] ); ?>;"><?php echo  the_excerpt();?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                            }
+                        }
+                        wp_reset_postdata();
+                        }
+                    ?>                       
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php }else{ ?>
+
+    <section class="program_list program_list_page section_padding" id="program_list">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filters">
+                    <ul>
+                    <li class="is-checked" data-filter="*">All Projects</li>
+                    <?php 
+                    if(is_array($gallery_cat)) {
+                    foreach ( $gallery_cat as $gallery_cat ) { ?>
+                            <li data-filter=".<?php echo $gallery_cat->slug ?>"><?php echo $gallery_cat->name ?></li>
+                    <?php
+                        }
+                        } 
+                    ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row grid program_list_filter">
+                    <?php
+                        if( $gallery->have_posts() ){
+                            while ( $gallery->have_posts() ){
+                                $gallery->the_post();
+                                if( has_post_thumbnail() ) {
+                                    $cats = get_the_terms(get_the_ID(), 'project_type');
+                                    $cat_slug = '';
+                                    if(is_array($cats)) {
+                                        foreach ($cats as $cat) {
+                                            $cat_slug .= $cat->slug.' ';
+                                        }
+                                    }
+                        ?>
+                        <div class="col-lg-6 col-md-6 col-sm-12 grid-item <?php echo esc_attr($cat_slug);?>">
+                             <div class="single_program_list wow fadeInUp" data-wow-delay=".4s">
+                               <?php  if( has_post_thumbnail() ){ ?>
+                               <div class="img-tabs">
+                                    <?php the_post_thumbnail('full', array('class' => 'img-fluid')) ?>
+                                </div>
+                                <?php } ?>
+                                <div class="content_box">
+                                    <div class="single_program_list_content text-hidden">
+                                        <div class="category"><?php echo $cat->name; ?></div>
+                                        <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
+                                        <div class="content" style="text-align: <?php echo esc_attr( $settings['text_align'] ); ?>;"><?php echo  the_excerpt();?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                            }
+                        }
+                        wp_reset_postdata();
+                        }
+                    ?>                       
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <?php } ?>
     <?php
   }
 

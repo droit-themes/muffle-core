@@ -289,9 +289,7 @@ class DRTH_ESS_Services extends Widget_Base{
 
             ]
         );
-
-
-
+        
         $this->end_controls_section();
     }
 
