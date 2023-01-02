@@ -25,10 +25,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class case-studies
  * @package case-studies\Widgets
  */
-class DRTH_ESS_gallery extends Widget_Base {
+class DRTH_ESS_Muffle_Project extends Widget_Base {
 
     public function get_name() {
-        return 'muffle-gallery';
+        return 'muffle-project';
     }
 
     public function get_title() {
@@ -148,7 +148,7 @@ class DRTH_ESS_gallery extends Widget_Base {
                 'label' => __( 'Text Color', 'muffle_core' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .single_program_list .single_program_list_content h4' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .__title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -156,7 +156,7 @@ class DRTH_ESS_gallery extends Widget_Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(), [
                 'name' => 'item_title_typo',
-                'selector' => '{{WRAPPER}} .single_program_list .single_program_list_content h4',
+                'selector' => '{{WRAPPER}} .__title',
 
             ]
         );
@@ -168,7 +168,7 @@ class DRTH_ESS_gallery extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .single_program_list .single_program_list_content h4' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .single_program_list_content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -344,23 +344,24 @@ class DRTH_ESS_gallery extends Widget_Base {
                                             $cat_slug .= $cat->slug.' ';
                                         }
                                     }
-                        ?>
-                        <div class="col-lg-4 col-md-4 col-sm-12 grid-item <?php echo esc_attr($cat_slug);?>">
-                             <div class="single_program_list wow fadeInUp" data-wow-delay=".4s">
-                               <?php  if( has_post_thumbnail() ){ ?>
-                               <div class="img-tabs">
+                            ?>
+                            <div class="col-lg-6 col-md-6 author-content grid-item <?php echo esc_attr($cat_slug);?>">
+                                <div class="project_item">
+                                <?php  if( has_post_thumbnail() ){ ?>
+                                    <div class="project-thumbnail">
                                     <?php the_post_thumbnail('full', array('class' => 'img-fluid')) ?>
-                                </div>
-                                <?php } ?>
-                                <div class="content_box">
-                                    <div class="single_program_list_content text-hidden">
+                                    <a href="<?php the_permalink(); ?>"><span class="plus_icons"><i class="fas fa-plus"></i></span></a>
+                                    </div>
+                                    <?php } ?>
+                                    <div class="project_content">
+                                    <div class="single_program_list_content">
+                                        <a class="__title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                         <div class="category"><?php echo $cat->name; ?></div>
-                                        <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
                                         <div class="content" style="text-align: <?php echo esc_attr( $settings['text_align'] ); ?>;"><?php echo  the_excerpt();?></div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <?php
                             }
                         }
@@ -404,22 +405,23 @@ class DRTH_ESS_gallery extends Widget_Base {
                                         }
                                     }
                         ?>
-                        <div class="col-lg-6 col-md-6 col-sm-12 grid-item <?php echo esc_attr($cat_slug);?>">
-                             <div class="single_program_list wow fadeInUp" data-wow-delay=".4s">
-                               <?php  if( has_post_thumbnail() ){ ?>
-                               <div class="img-tabs">
+                        <div class="col-lg-4 col-md-6 author-content grid-item <?php echo esc_attr($cat_slug);?>">
+                                <div class="project_item">
+                                <?php  if( has_post_thumbnail() ){ ?>
+                                    <div class="project-thumbnail">
                                     <?php the_post_thumbnail('full', array('class' => 'img-fluid')) ?>
-                                </div>
-                                <?php } ?>
-                                <div class="content_box">
-                                    <div class="single_program_list_content text-hidden">
+                                    <a href="<?php the_permalink(); ?>"><span class="plus_icons"><i class="fas fa-plus"></i></span></a>
+                                    </div>
+                                    <?php } ?>
+                                    <div class="project_content">
+                                    <div class="single_program_list_content">
+                                        <a class="__title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                         <div class="category"><?php echo $cat->name; ?></div>
-                                        <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
                                         <div class="content" style="text-align: <?php echo esc_attr( $settings['text_align'] ); ?>;"><?php echo  the_excerpt();?></div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <?php
                             }
                         }
@@ -500,26 +502,55 @@ class DRTH_ESS_gallery extends Widget_Base {
     if( \Elementor\Plugin::$instance->editor->is_edit_mode() === true  ) {
         ?>
         <script>
-            ( function( $ ){
-            //banner slider js
-            $(document).ready(function () {
-                var $grid = $('.program_list_filter').isotope({
-                    itemSelector: '.grid-item',
-                    layoutMode: 'fitRows',
+            (function ($) {
+                "use strict";
+                //wow js
+                var wow = new WOW({
+                    animateClass: 'animated',
+                    offset: 100,
+                    mobile: false,
+                    duration: 1000,
                 });
-                var $buttonGroup = $('.filters');
-                $buttonGroup.on('click', 'li', function (event) {
-                    $buttonGroup.find('.is-checked').removeClass('is-checked');
-                    var $button = $(event.currentTarget);
-                    $button.addClass('is-checked');
-                    var filterValue = $button.attr('data-filter');
-                    $grid.isotope({
-                        filter: filterValue
+                wow.init();
+
+
+                // tabs
+                var gallery = $('.gallery_iner');
+                if (gallery.length) {
+                    gallery.imagesLoaded(function () {
+                        gallery.isotope({
+                            itemSelector: '.grid-item',
+                            percentPosition: true,
+                            masonry: {
+                                columnWidth: '.grid-sizer'
+                            }
+                        });
+                    })
+                }
+
+                var program = document.getElementById("program_list");
+
+                if (program) {
+                    $(document).ready(function () {
+                        var $grid = $('.program_list_filter').isotope({
+                            itemSelector: '.grid-item',
+                            layoutMode: 'fitRows',
+                        });
+                        var $buttonGroup = $('.filters');
+                        $buttonGroup.on('click', 'li', function (event) {
+                            $buttonGroup.find('.is-checked').removeClass('is-checked');
+                            var $button = $(event.currentTarget);
+                            $button.addClass('is-checked');
+                            var filterValue = $button.attr('data-filter');
+                            $grid.isotope({
+                                filter: filterValue
+                            });
+                        });
                     });
-                });
-            });
-           
-            })(jQuery);
+                }
+
+
+                }(jQuery));
         </script>
         <?php
     }

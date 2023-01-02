@@ -163,10 +163,10 @@ class Widgets_Loader{
                 'source' => 'local',
             ],
             
-            'gallery' => [
+            'muffle-project' => [
                 'title' => __( 'Roofy Gallery', 'muffle-core' ),
-                'js' => ['gallery.js'],
-                'css' => ['gallery.css'],
+                'js' => ['muffle-project.js'],
+                'css' => ['muffle-project.css'],
                 'source' => 'local',
             ],
 
