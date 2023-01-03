@@ -357,7 +357,6 @@ class DRTH_ESS_Muffle_Project extends Widget_Base {
                                     <div class="single_program_list_content">
                                         <a class="__title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                         <div class="category"><?php echo $cat->name; ?></div>
-                                        <div class="content" style="text-align: <?php echo esc_attr( $settings['text_align'] ); ?>;"><?php echo  the_excerpt();?></div>
                                     </div>
                                     </div>
                                 </div>
@@ -417,7 +416,6 @@ class DRTH_ESS_Muffle_Project extends Widget_Base {
                                     <div class="single_program_list_content">
                                         <a class="__title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                         <div class="category"><?php echo $cat->name; ?></div>
-                                        <div class="content" style="text-align: <?php echo esc_attr( $settings['text_align'] ); ?>;"><?php echo  the_excerpt();?></div>
                                     </div>
                                     </div>
                                 </div>
@@ -477,7 +475,6 @@ class DRTH_ESS_Muffle_Project extends Widget_Base {
                                     <div class="single_program_list_content text-hidden">
                                         <div class="category"><?php echo $cat->name; ?></div>
                                         <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
-                                        <div class="content" style="text-align: <?php echo esc_attr( $settings['text_align'] ); ?>;"><?php echo  the_excerpt();?></div>
                                     </div>
                                 </div>
                             </div>

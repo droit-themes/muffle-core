@@ -33,7 +33,7 @@
 }
 
 /* extra */
-.swiper-slide.swiper-slide-active img {
+.gallery .swiper-slide.swiper-slide-active img {
   width: 200px !important;
   height: 200px !important;
 }

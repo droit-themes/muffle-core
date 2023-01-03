@@ -141,22 +141,10 @@
     rgba(255, 255, 255, 0) 4.6%,
     #ffffff 55%
   );
-  transition: 0.5s;
-  transition-timing-function: linear;
 }
 .team_style_two .team_item:hover .team-thumbnail img {
   -webkit-mask-image: unset;
-  transition: 0.3s;
-  transition-timing-function: ease;
 }
-
-/* text */
-
-.author-content a .author-name {
-  transition: 0.5s;
-  transition-timing-function: ease;
-}
-.author-content:hover a .author-name {
-  transition: 0.3s;
-  transition-timing-function: ease;
+.team_item a h3 {
+  transition: all 0s;
 }
