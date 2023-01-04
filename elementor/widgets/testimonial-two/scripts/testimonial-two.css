@@ -102,3 +102,11 @@
   font-size: 22px;
   font-weight: 400;
 }
+@media (max-width: 767px) {
+  .gallery .pagi_btn {
+    display: none;
+  }
+  .gallery-thumbs {
+    display: none;
+  }
+}

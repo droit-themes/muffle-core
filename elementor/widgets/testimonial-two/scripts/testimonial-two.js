@@ -8,6 +8,7 @@ jQuery(function ($) {
     slidesPerView: 1,
     centeredSlides: true,
     loop: true,
+    spaceBetween: 10,
     loopedSlides: 3,
     autoplay: {
       delay: 3000,

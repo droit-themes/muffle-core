@@ -90,3 +90,14 @@
 .program_list_page .img-fluid.wp-post-image {
   border-radius: 6px;
 }
+
+@media (max-width: 768px) {
+  .program_list_page .filters {
+    padding-bottom: 60px;
+  }
+}
+@media (max-width: 575px) {
+  .program_list_page .filters ul li {
+    margin: 0 15px 10px;
+  }
+}

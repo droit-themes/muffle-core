@@ -185,7 +185,7 @@ class DRTH_ESS_Testimonial_two extends Widget_Base {
 
     ?>
         <div class="gallery">
-        <div class="swiper-container gallery-thumbs">
+            <div class="swiper-container gallery-thumbs">
                 <div class="swiper-wrapper img-img">
                 <?php
                 if ( $testimonials ) {
@@ -218,9 +218,6 @@ class DRTH_ESS_Testimonial_two extends Widget_Base {
                         <?php if ( !empty($testimonial['name']) ) : ?>
                                     <h4 class="__name"><?php echo esc_html($testimonial['name']) ?> </h4>
                         <?php endif; ?>
-                        <?php //if ( //!empty($testimonial['designation']) ) : ?>
-                                    <!-- <h5 class="designation"><?php //echo esc_html($testimonial['designation']) ?> </h5> -->
-                        <?php //endif; ?>
                     </div>
                     <?php
                       }
@@ -229,10 +226,10 @@ class DRTH_ESS_Testimonial_two extends Widget_Base {
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-button-next">
+            <div class="swiper-button-next pagi_btn">
                 <i class="fas fa-arrow-right"></i>
             </div>
-            <div class="swiper-button-prev">
+            <div class="swiper-button-prev pagi_btn">
                 <i class="fas fa-arrow-left"></i>
             </div>
             
@@ -249,6 +246,7 @@ class DRTH_ESS_Testimonial_two extends Widget_Base {
             speed: 2500,
             slidesPerView: 1,
             centeredSlides: true,
+            spaceBetween: 10,
             loop: true,
             loopedSlides: 3,
             autoplay: {
