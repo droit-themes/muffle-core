@@ -1246,6 +1246,32 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                 ],
             ]
         );
+        $this->add_responsive_control(
+			'_dl_banner_button_Spacing',
+			[
+				'label' => __( 'Bottom Spacing', 'droit-addons-pro' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => -100,
+						'max' => 100,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 10,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+        );
         $this->end_controls_section();
     }
 
