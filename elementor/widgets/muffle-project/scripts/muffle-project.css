@@ -95,9 +95,16 @@
   .program_list_page .filters {
     padding-bottom: 60px;
   }
+  .program_list_page .filters ul li {
+    margin: 0 15px 0px !important;
+  }
+  .program_list_page .filters ul .is-checked {
+    padding: 0;
+    margin: 0;
+  }
 }
 @media (max-width: 575px) {
   .program_list_page .filters ul li {
-    margin: 0 15px 10px;
+    margin: 0 15px 0px;
   }
 }

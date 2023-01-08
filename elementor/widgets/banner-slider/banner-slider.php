@@ -81,6 +81,15 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
             ]
         );
         $repeater->add_control(
+            '_dl_banner_sub_title', [
+                'label' => __('Title', 'droit-addons-pro'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'placeholder' => __('Enter Name', 'droit-addons-pro'),
+                'default' => __('', 'droit-addons-pro'),
+                'label_block' => true,
+            ]
+        );
+        $repeater->add_control(
             '_dl_banner_title', [
                 'label' => __('Title', 'droit-addons-pro'),
                 'type' => \Elementor\Controls_Manager::TEXT,
@@ -356,21 +365,25 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
+                        '_dl_banner_sub_title' => __('Sub Title', 'droit-addons-pro'),
                         '_dl_banner_title' => __('Droitthemes', 'droit-addons-pro'),
                         '_dl_banner_content' => __(' “Droitadons presents your services with flexible, convenient and multipurpose layouts. You can select your favorite.“', 'droit-addons-pro'),
                         '_dl_banner_image' => \Elementor\Utils::get_placeholder_image_src(),
                     ],
                     [
+                        '_dl_banner_sub_title' => __('Sub Title', 'droit-addons-pro'),
                         '_dl_banner_title' => __('Droitthemes', 'droit-addons-pro'),
                         '_dl_banner_content' => __(' “Droitadons presents your services with flexible, convenient and multipurpose layouts. You can select your favorite.“', 'droit-addons-pro'),
                         '_dl_banner_image' => \Elementor\Utils::get_placeholder_image_src(),
                     ],
                     [
+                        '_dl_banner_sub_title' => __('Sub Title', 'droit-addons-pro'),
                         '_dl_banner_title' => __('Droitthemes', 'droit-addons-pro'),
                         '_dl_banner_content' => __(' “Droitadons presents your services with flexible, convenient and multipurpose layouts. You can select your favorite.“', 'droit-addons-pro'),
                         '_dl_banner_image' => \Elementor\Utils::get_placeholder_image_src(),
                     ],
                     [
+                        '_dl_banner_sub_title' => __('Sub Title', 'droit-addons-pro'),
                         '_dl_banner_title' => __('Droitthemes', 'droit-addons-pro'),
                         '_dl_banner_content' => __(' “Droitadons presents your services with flexible, convenient and multipurpose layouts. You can select your favorite.“', 'droit-addons-pro'),
                         '_dl_banner_image' => \Elementor\Utils::get_placeholder_image_src(),
@@ -1069,30 +1082,15 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 		);
 
         $this->add_responsive_control(
-			'_dl_banner_title_Spacing',
-			[
-				'label' => __( 'Title Bottom Spacing', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => -100,
-						'max' => 100,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => -100,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 10,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h2' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-				],
-			]
+            '_dl_title_spacing',
+            [
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__( 'Title Margin', 'muffle-core' ),
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h2' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
         );
 
         $this->add_group_control(
@@ -1166,32 +1164,16 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				],
 			]
 		); 
-
         $this->add_responsive_control(
-			'_dl_banner_description_Spacing',
-			[
-				'label' => __( 'description Bottom Spacing', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => -100,
-						'max' => 100,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => -100,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 10,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content p' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-				],
-			]
+            '_dl_content_spacing',
+            [
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__( 'Content Margin', 'muffle-core' ),
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
         );
         $this->end_controls_section();
     }
@@ -2408,6 +2390,15 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                                 <div class="dl_row justify-content-center align-items-center">
                                     <div class="dl_col_lg_9">
                                         <div class="banner_slider_content">
+                                            <?php if ( !empty($s['_dl_banner_sub_title']) ) : ?>
+                                                <h3 
+                                                    <?php if(!empty($s['_dl_banner_title_animation'])) : ?>
+                                                        data-animation="<?php echo esc_html($s['_dl_banner_title_animation']);?>"
+                                                        data-delay="<?php echo esc_html($s['_dl_animation_delay'].'s');?>"
+                                                    <?php endif ?>
+                                                >
+                                                    <?php echo esc_html($s['_dl_banner_sub_title'])?></h3>
+                                            <?php endif ?>
                                             <?php if ( !empty($s['_dl_banner_title']) ) : ?>
                                                 <h2 
                                                     <?php if(!empty($s['_dl_banner_title_animation'])) : ?>
