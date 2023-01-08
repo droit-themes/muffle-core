@@ -980,6 +980,77 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                 ],
             ]
         );
+        $this->add_group_control(
+            \DROIT_ELEMENTOR_PRO\Content_Typography::get_type(),
+            [
+                'name' => 'banner_sub_typo',
+                'label' => __('Sub Title', 'droit-addons-pro'),
+                'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h3',
+                'fields_options' => [
+                    'typography' => [
+                        'default' => '',
+                    ],
+                    'fun_fact_style' => 'custom',
+                    'font_family' => [
+                        'default' => '',
+                    ],
+                    'font_color' => [
+                        'default' => '',
+                    ],
+                    'font_size' => [
+                        'desktop_default' => [
+                            'unit' => 'px',
+                            'size' => '',
+                        ],
+                        'tablet_default' => [
+                            'unit' => 'px',
+                            'size' => '',
+                        ],
+                        'mobile_default' => [
+                            'unit' => 'px',
+                            'size' => '',
+                        ],
+                    ],
+                    'font_weight' => [
+                        'default' => '',
+                    ],
+                    'text_transform' => [
+                        'default' => '', // uppercase, lowercase, capitalize, none
+                    ],
+                    'font_style' => [
+                        'default' => '', // normal, italic, oblique
+                    ],
+                    'text_decoration' => [
+                        'default' => '', // underline, overline, line-through, none
+                    ],
+                    'line_height' => [
+                        'desktop_default' => [
+                            'unit' => 'px',
+                            'size' => '',
+                        ],
+                        'tablet_default' => [
+                            'unit' => 'px',
+                            'size' => '',
+                        ],
+                        'mobile_default' => [
+                            'unit' => 'px',
+                            'size' => '',
+                        ],
+                    ],
+                ],
+            ]
+        );
+
+        $this->add_control(
+			'banner_sub_color',
+			[
+				'label' => esc_html__( 'Sub Title', 'droit-addons-pro' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h3' => 'color: {{VALUE}}',
+				],
+			]
+		); 
 
         $this->add_responsive_control(
 			'_dl_banner_content_verticle_height',
@@ -2388,7 +2459,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                         <div class="swiper-slide slider_item slider_bg_color" style="background-image: url('<?php echo esc_url( $s['_dl_banner_image']['url'] );?>');">
                             <div class="dl_container">
                                 <div class="dl_row justify-content-center align-items-center">
-                                    <div class="dl_col_lg_9">
+                                    <div class="dl_col_lg_12">
                                         <div class="banner_slider_content">
                                             <?php if ( !empty($s['_dl_banner_sub_title']) ) : ?>
                                                 <h3 
