@@ -145,7 +145,7 @@ class DRTH_ESS_Muffly_Pricing extends Widget_Base {
 			    'label' => esc_html__( 'Heading Section', 'muffle_core' ),
 			    'type' => \Elementor\Controls_Manager::REPEATER,
 			    'fields' => $price_general->get_controls(),
-			    'title_field' => '{{{ te_price_head_text }}}',
+			    'title_field' => '{{{ te_price_head }}}',
 			    'prevent_empty' => false
 		    ]
 	    );
@@ -548,7 +548,6 @@ class DRTH_ESS_Muffly_Pricing extends Widget_Base {
 		
 	?>
 	<section class="mr_price_area">
-		<div class="container">
 			<div class="table_price_info">
 				<div class="price_head">
 					<div class="p_head"></div>
@@ -631,7 +630,6 @@ class DRTH_ESS_Muffly_Pricing extends Widget_Base {
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
     <?php
     }
