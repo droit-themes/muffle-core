@@ -98,13 +98,6 @@ class Widgets_Loader{
                 'source' => 'local',
             ],
 
-            'pricing-theme' => [
-                'title' => __( 'Pricing', 'muffle-core' ),
-                'js' => ['js/pricing.js'],
-                'css' => ['css/pricing.css'],
-                'source' => 'local',
-            ],
-
             'pricing-pro' => [
                 'title' => __( 'Pricing Pro', 'muffle-core' ),
                 'js' => [''],
@@ -188,8 +181,12 @@ class Widgets_Loader{
 	            'css' => ['video_popup.css', 'magnify-pop/magnific-popup.css'],
 	            'source' => 'local',
             ],
-
-
+            'muffly-pricing' => [
+	            'title' => __( 'Muffly Pricing', 'muffle-coro' ),
+	            'js' => ['muffly-pricing.js'],
+	            'css' => ['css/muffly-pricing.css'],
+	            'source' => 'local',
+            ],
         ]);
     }
 
