@@ -187,6 +187,12 @@ class Widgets_Loader{
 	            'css' => ['css/muffly-pricing.css'],
 	            'source' => 'local',
             ],
+            'testimonial-pro' => [
+	            'title' => __( 'Testimonial Pro', 'muffle-coro' ),
+	            'js' => [''],
+	            'css' => ['dl_testimonial_pro.min.css'],
+	            'source' => 'local',
+            ],
         ]);
     }
 
