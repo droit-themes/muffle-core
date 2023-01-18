@@ -240,7 +240,7 @@ class Droit_Addons_Breadcrumbs extends Control
                     $last_category = reset($values);
 
                     $categories = array();
-                    $get_cat_parents = rtrim(get_category_parents($last_category->term_id, true, ','), ',');
+                    $get_cat_parents = rtrim((string) get_category_parents($last_category->term_id, true, ','), ',');
                     $cat_parents = explode(',', $get_cat_parents);
                     foreach ($cat_parents as $parent) {
                         $categories[] = get_term_by('name', $parent, 'category');

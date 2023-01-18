@@ -49,7 +49,7 @@ class Lottie{
 	public function _script() {	
 		
 
-		if ( ( true === \Elementor\Plugin::$instance->db->is_built_with_elementor( get_the_ID() ) ) || ( function_exists( 'elementor_location_exits' ) && ( elementor_location_exits( 'archive', true ) || elementor_location_exits( 'single', true ) ) ) ) {
+		if (( function_exists( 'elementor_location_exits' ) && ( elementor_location_exits( 'archive', true ) || elementor_location_exits( 'single', true ) ) ) ) {
 			wp_enqueue_style('lottie-style', self::url() . 'assets/lottie-style.css', [], self::version());
 			wp_localize_script(
 				'elementor-frontend',

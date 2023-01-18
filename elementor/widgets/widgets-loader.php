@@ -185,7 +185,7 @@ class Widgets_Loader{
             self::$elementor = \Elementor\Plugin::instance();
             
             add_action( 'elementor/elements/categories_registered', [$this, 'register_category' ] );
-            add_action( 'elementor/widgets/widgets_registered', [$this, 'register_widgets' ] );
+            add_action( 'elementor/widgets/register', [$this, 'register_widgets' ] );
 
         }
 
@@ -371,7 +371,7 @@ class Widgets_Loader{
                 $class = class_exists($class2) ? $class2 : $class;
 
                 if( class_exists($class) ){
-                    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $class() );
+                    \Elementor\Plugin::instance()->widgets_manager->register( new $class() );
                 }
 
             }
