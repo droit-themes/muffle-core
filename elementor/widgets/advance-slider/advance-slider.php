@@ -97,7 +97,6 @@ class Droit_Addons_Advance_Slider extends \ELEMENTOR\Widget_Base
         );
 
         $repeater = new \Elementor\Repeater();
-        
         $repeater->add_control(
             '_dl_field_title',
             [

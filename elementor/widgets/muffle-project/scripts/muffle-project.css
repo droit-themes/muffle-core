@@ -1,0 +1,110 @@
+.program_list_page .project_item {
+  position: relative;
+}
+.team_style_two .project_item {
+  position: relative;
+  background-color: #fff;
+}
+.program_list_page .project_content {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  visibility: hidden;
+}
+.project_item:hover .single_program_list_content {
+  visibility: visible;
+  z-index: 8;
+}
+.program_list_page .project_item .project-thumbnail {
+  z-index: 0;
+}
+.program_list_page .project_item .project-thumbnail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transition: 0.5s;
+  border-radius: 6px;
+  background: linear-gradient(
+    189.79deg,
+    rgba(15, 15, 15, 0) 28.68%,
+    #0f0f0f 94.64%
+  );
+}
+.program_list_page .project_item:hover .project-thumbnail::before {
+  opacity: 0.6;
+}
+.program_list_filter .author-content {
+  margin-bottom: 20px;
+}
+/* new css */
+.single_program_list_content a {
+  transition: all 0s;
+}
+.category {
+  text-align: start;
+}
+.project-thumbnail .plus_icons {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  background: #f8b326;
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+  visibility: hidden;
+  cursor: pointer;
+  z-index: 2;
+}
+.project_item:hover .project-thumbnail .plus_icons {
+  visibility: visible;
+}
+.project-thumbnail .plus_icons i {
+  margin-top: 22px;
+  font-size: 15px;
+  color: #0f0f0f;
+}
+.program_list_page .filters ul {
+  border-bottom: 1px solid rgba(15, 15, 15, 0.1);
+}
+.program_list_page .filters {
+  width: fit-content;
+  margin: auto;
+  padding-bottom: 80px;
+}
+.program_list_page .filters ul .is-checked {
+  border-bottom: 4px solid #f8b326;
+  padding: 0px 20px;
+  margin: 0;
+}
+.program_list_page .filters ul li {
+  border-bottom: 4px solid #f8b22600;
+}
+
+.program_list_page .img-fluid.wp-post-image {
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .program_list_page .filters {
+    padding-bottom: 60px;
+  }
+  .program_list_page .filters ul li {
+    margin: 0 15px 0px !important;
+  }
+  .program_list_page .filters ul .is-checked {
+    padding: 0;
+    margin: 0;
+  }
+}
+@media (max-width: 575px) {
+  .program_list_page .filters ul li {
+    margin: 0 15px 0px;
+  }
+}

@@ -8,17 +8,18 @@ $taxonomy = new \Dt_custom_postype\Dt_Taxonomies;
 $custom_postype->dt_postype('service', 'Service', 'Services', array('title', 'editor', 'author', 'thumbnail', 'excerpt'));
 $taxonomy->dt_taxonomy( 'Type', 'Type', 'Types', 'service');
 
+$custom_postype->dt_postype('project', 'project', 'Our Projects', array('title', 'editor', 'author', 'thumbnail', 'excerpt'));
+$taxonomy->dt_taxonomy( 'project_type', 'project Type', 'project Type', 'project');
 
+$custom_postype->dt_postype('Team', 'Team', 'Our Team', array('title', 'editor', 'author', 'thumbnail', 'excerpt'));
 
-$custom_postype->dt_postype('gallery', 'Gallery', 'Gallery', array('title', 'editor', 'author', 'thumbnail', 'excerpt'));
-$taxonomy->dt_taxonomy( 'gallery_type', 'Gallery Type', 'Gallery Type', 'gallery');
 
 
 // Register Menu Page
 add_action( 'admin_menu', 'register_admin_page_for_header_footer' );
 function register_admin_page_for_header_footer() {
     add_menu_page(
-        'roofy Header Footer',
+        'Roofy Header Footer',
         'Header Footer',
         'read',
         'roofy-header-footer',

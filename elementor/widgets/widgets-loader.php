@@ -98,13 +98,6 @@ class Widgets_Loader{
                 'source' => 'local',
             ],
 
-            'pricing-theme' => [
-                'title' => __( 'Pricing', 'muffle-core' ),
-                'js' => ['js/pricing.js'],
-                'css' => ['css/pricing.css'],
-                'source' => 'local',
-            ],
-
             'pricing-pro' => [
                 'title' => __( 'Pricing Pro', 'muffle-core' ),
                 'js' => [''],
@@ -163,14 +156,43 @@ class Widgets_Loader{
                 'source' => 'local',
             ],
             
-            'gallery' => [
+            'muffle-project' => [
                 'title' => __( 'Roofy Gallery', 'muffle-core' ),
-                'js' => ['gallery.js'],
-                'css' => ['gallery.css'],
+                'js' => ['muffle-project.js'],
+                'css' => ['muffle-project.css'],
                 'source' => 'local',
             ],
 
-
+            'team-member' => [
+	            'title' => __( 'Team Member', 'muffle-coro' ),
+	            'js' => [''],
+	            'css' => ['team-member.css'],
+	            'source' => 'local',
+            ],
+            'testimonial-two' => [
+	            'title' => __( 'Testimonial', 'muffle-coro' ),
+	            'js' => ['testimonial-two.js'],
+	            'css' => ['testimonial-two.css'],
+	            'source' => 'local',
+            ],
+            'video-popup' => [
+	            'title' => __( 'Video Popup', 'muffle-coro' ),
+	            'js' => ['magnify-pop/jquery.magnific-popup.min.js', 'video_popup.js'],
+	            'css' => ['video_popup.css', 'magnify-pop/magnific-popup.css'],
+	            'source' => 'local',
+            ],
+            'muffly-pricing' => [
+	            'title' => __( 'Muffly Pricing', 'muffle-coro' ),
+	            'js' => ['muffly-pricing.js'],
+	            'css' => ['css/muffly-pricing.css'],
+	            'source' => 'local',
+            ],
+            'testimonial-pro' => [
+	            'title' => __( 'Testimonial Pro', 'muffle-coro' ),
+	            'js' => [''],
+	            'css' => ['dl_testimonial_pro.min.css'],
+	            'source' => 'local',
+            ],
         ]);
     }
 
