@@ -104,7 +104,14 @@ class DRTH_ESS_Team_Member extends Widget_Base{
                 'tab'   => Controls_Manager::TAB_STYLE,
             ]
         );
-
+        $this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'background',
+				'types' => [ 'classic', 'gradient', 'video' ],
+				'selector' => '{{WRAPPER}} .team_style_two .team_item',
+			]
+		);
         $this->add_responsive_control(
             'sec_team_margin',
             [
@@ -224,45 +231,17 @@ class DRTH_ESS_Team_Member extends Widget_Base{
 	    ) );
     ?>
 
-    <?php if( $team_style == 1 ){ ?>
+<?php if( $team_style == 1 ){ ?>
 
-    <section class="team team_style_one">
-        <div class="team-section">
-            <div class="row">
-                <?php
+<section class="team team_style_one">
+    <div class="team-section">
+        <div class="row">
+            <?php
                     while( $team_member->have_posts()):
                         $team_member->the_post();
                         $designation = function_exists( 'get_field' ) ? get_field( 'designation' ) : '';
                 ?>
-                <div class="col-lg-4 col-md-6 author-content">
-                    <div class="team_item">
-                    <?php if(has_post_thumbnail()): ?>
-                    <div class="team-thumbnail">
-                        <?php the_post_thumbnail('full', array( 'class' => 'author-img img-fluid' )); ?>
-                    </div>
-                    <?php endif; ?>
-                    <div class="team_content">
-                    <a href="<?php the_permalink(); ?>" class="author-name"><h3 class="author-name"><?php the_title(); ?></h3></a>
-                    <h4 class="author-designation"><?php echo $designation; ?></h4>
-                    </div>
-                    </div>
-                </div>
-                <?php endwhile; ?>
-            </div>
-        </div>
-    </section>
-
-    <?php } elseif( $team_style == 2 ){ ?>
-
-        <section class="team team_style_two">
-        <div class="team-section">
-            <div class="row">
-                <?php
-                    while( $team_member->have_posts()):
-                        $team_member->the_post();
-                        $designation = function_exists( 'get_field' ) ? get_field( 'designation' ) : '';
-                ?>
-                <div class="col-lg-4 col-md-6 author-content">
+            <div class="col-lg-4 col-md-6 author-content">
                 <div class="team_item">
                     <?php if(has_post_thumbnail()): ?>
                     <div class="team-thumbnail">
@@ -270,40 +249,73 @@ class DRTH_ESS_Team_Member extends Widget_Base{
                     </div>
                     <?php endif; ?>
                     <div class="team_content">
-                    <a href="<?php the_permalink(); ?>" class="author-name"><h3 class="author-name"><?php the_title(); ?></h3></a>
-                    <h4 class="author-designation"><?php echo $designation; ?></h4>
+                        <a href="<?php the_permalink(); ?>" class="author-name">
+                            <h3 class="author-name"><?php the_title(); ?></h3>
+                        </a>
+                        <h4 class="author-designation"><?php echo $designation; ?></h4>
                     </div>
                 </div>
-                </div>
-                <?php endwhile; ?>
             </div>
+            <?php endwhile; ?>
         </div>
-    </section>
-    <?php }else{ } ?>
-    <?php 
+    </div>
+</section>
+
+<?php } elseif( $team_style == 2 ){ ?>
+
+<section class="team team_style_two">
+    <div class="team-section">
+        <div class="row">
+            <?php
+                    while( $team_member->have_posts()):
+                        $team_member->the_post();
+                        $designation = function_exists( 'get_field' ) ? get_field( 'designation' ) : '';
+                ?>
+            <div class="col-lg-4 col-md-6 author-content">
+                <div class="team_item">
+                    <?php if(has_post_thumbnail()): ?>
+                    <div class="team-thumbnail">
+                        <?php the_post_thumbnail('full', array( 'class' => 'author-img img-fluid' )); ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="team_content">
+                        <a href="<?php the_permalink(); ?>" class="author-name">
+                            <h3 class="author-name"><?php the_title(); ?></h3>
+                        </a>
+                        <h4 class="author-designation"><?php echo $designation; ?></h4>
+                    </div>
+                </div>
+            </div>
+            <?php endwhile; ?>
+        </div>
+    </div>
+</section>
+<?php }else{ } ?>
+<?php 
     }
 
     public function load_widget_script(){
         if( \Elementor\Plugin::$instance->editor->is_edit_mode() === true  ) {
             ?>
-            <script>
-                ( function( $ ){
+<script>
+(function($) {
 
-                    //popular courses js
-                    document.addEventListener("mouseover", parallax);
-                        function parallax(e){
-                            document.querySelectorAll(".object").forEach(function(move){
-                                var moving_value = move.getAttribute("data-value");
-                                var x = (e.clientX * moving_value)/150;
-                                var y = (e.clientY * moving_value)/50;
+    //popular courses js
+    document.addEventListener("mouseover", parallax);
 
-                                move.style.transform = "translateX("+x+"px) translateY("+y+"px)";
-                            });
-                        }
+    function parallax(e) {
+        document.querySelectorAll(".object").forEach(function(move) {
+            var moving_value = move.getAttribute("data-value");
+            var x = (e.clientX * moving_value) / 150;
+            var y = (e.clientY * moving_value) / 50;
 
-                })(jQuery);
-            </script>
-            <?php
+            move.style.transform = "translateX(" + x + "px) translateY(" + y + "px)";
+        });
+    }
+
+})(jQuery);
+</script>
+<?php
         }
     }
 

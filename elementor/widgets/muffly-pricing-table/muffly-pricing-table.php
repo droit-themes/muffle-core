@@ -13,14 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class droit_portfolio_slider
  * @package droit_portfolioCore\Widgets
  */
-class DRTH_ESS_Muffly_Pricing extends Widget_Base {
+class DRTH_ESS_Muffly_Pricing_Table extends Widget_Base {
 
     public function get_name() {
-        return 'droit-pricing';
+        return 'muffly_pricing_table';
     }
 
     public function get_title() {
-        return __( 'Muffly Pricing', 'muffle_core' );
+        return __( 'Muffly Pricing Table', 'muffle_core' );
     }
 
     public function get_icon() {
@@ -39,8 +39,6 @@ class DRTH_ESS_Muffly_Pricing extends Widget_Base {
 		return ['droit-portfolio-script'];
 	}
     protected function register_controls() {
-
-	    $pricing_repeater = new \Elementor\Repeater();
 
         $this->start_controls_section(
 			'terra_price_select_sec', [
@@ -547,91 +545,98 @@ class DRTH_ESS_Muffly_Pricing extends Widget_Base {
 		$price_buttons  = !empty($settings['general_price_buttons']) ? $settings['general_price_buttons'] : '';
 		
 	?>
-	<section class="mr_price_area">
-			<div class="table_price_info">
-				<div class="price_head">
-					<div class="p_head"></div>
-					<?php 
+<section class="mr_price_area">
+    <div class="table_price_info">
+        <div class="price_head">
+            <div class="p_head"></div>
+            <?php 
 					   $i=1;
 					   if(is_array( $price_header ) && count ($price_header) > 0){
 					   foreach( $price_header as $headline ):
 						$price_show  = !empty($headline['show_title']) ? $headline['show_title'] : '';
 					?>
 
-					<div class="p_head <?php if($i=='1'){ echo 'head_title'; }else{ } ?>">
-					<?php
+            <div class="p_head <?php if($i=='1'){ echo 'head_title'; }else{ } ?>">
+                <?php
 					if($price_show =='yes' ): 
 					?>
-						<h3 class="__features"><?php echo $headline['te_price_features']; ?></h3>
-						<?php endif; ?>
-						
-						<h4 class="__per"><?php echo $headline['te_price_per']; ?></h4>
-						<h2 class="__price"><?php echo $headline['te_price']; ?></h2>
-						<h2 class="__title"><?php echo $headline['te_price_head']; ?></h2>
-						<p class="__subtitle"><?php echo $headline['te_price_sub_head']; ?></p>
-					</div>
-					<?php
+                <h3 class="__features"><?php echo $headline['te_price_features']; ?></h3>
+                <?php endif; ?>
+
+                <h4 class="__per"><?php echo $headline['te_price_per']; ?></h4>
+                <h2 class="__price"><?php echo $headline['te_price']; ?></h2>
+                <h2 class="__title"><?php echo $headline['te_price_head']; ?></h2>
+                <p class="__subtitle"><?php echo $headline['te_price_sub_head']; ?></p>
+            </div>
+            <?php
 					$i++;
 					endforeach;
 					}
 					?>
-				</div>
-				<div class="price_body">
-					<?php 
+        </div>
+        <div class="price_body">
+            <?php 
 					   $i=1;
 					   if(is_array( $price_content ) && count ($price_content) > 0){
 					   foreach( $price_content as $priceContent ):
 						
 					?>
-					<div class="pr_list">
-						<?php if($priceContent['te_price_content_title']): ?>
-							<div class="price_item">
-								<h5 class="pr_title"><?php echo $priceContent['te_price_content_title']; ?></h5>
-							</div>
-						<?php endif; ?>
-						<div class="price_item" data-title="Muffle">
-							<h5 class="check"><?php \Elementor\Icons_Manager::render_icon( $priceContent['te_price_content_icon1'], [ 'aria-hidden' => 'true' ] ); ?></h5>
-						</div>
-						<div class="price_item" data-title="Other Agency #1">
-							<h5 class="crose"><?php \Elementor\Icons_Manager::render_icon( $priceContent['te_price_content_icon2'], [ 'aria-hidden' => 'true' ] ); ?></h5>
-						</div>
-						<div class="price_item" data-title="Other Agency #2">
-							<h5 class="check"><?php \Elementor\Icons_Manager::render_icon( $priceContent['te_price_content_icon3'], [ 'aria-hidden' => 'true' ] ); ?></h5>
-						</div>
-					</div>
-					<?php 
+            <div class="pr_list">
+                <?php if($priceContent['te_price_content_title']): ?>
+                <div class="price_item">
+                    <h5 class="pr_title"><?php echo $priceContent['te_price_content_title']; ?></h5>
+                </div>
+                <?php endif; ?>
+                <div class="price_item" data-title="Muffle">
+                    <h5 class="check">
+                        <?php \Elementor\Icons_Manager::render_icon( $priceContent['te_price_content_icon1'], [ 'aria-hidden' => 'true' ] ); ?>
+                    </h5>
+                </div>
+                <div class="price_item" data-title="Other Agency #1">
+                    <h5 class="crose">
+                        <?php \Elementor\Icons_Manager::render_icon( $priceContent['te_price_content_icon2'], [ 'aria-hidden' => 'true' ] ); ?>
+                    </h5>
+                </div>
+                <div class="price_item" data-title="Other Agency #2">
+                    <h5 class="check">
+                        <?php \Elementor\Icons_Manager::render_icon( $priceContent['te_price_content_icon3'], [ 'aria-hidden' => 'true' ] ); ?>
+                    </h5>
+                </div>
+            </div>
+            <?php 
 					$i++;
 					endforeach;
 					}
 					?>
-					<div class="pr_list">
-						<div class="price_item">
-						</div>
-						<?php 
+            <div class="pr_list">
+                <div class="price_item">
+                </div>
+                <?php 
 							$i=1;
 							if(is_array( $price_buttons ) && count ($price_buttons) > 0){
 							foreach( $price_buttons as $button_price ):
 						?>
-						<div class="price_item">
-							<a href="<?php echo esc_url($button_price['price_button_url']); ?>" class="<?php if($i==2){ echo 'price_btn btn_hover'; }else{ echo 'theme_btn_text'; } ?> ">
-								<?php echo $button_price['price_button_text']; ?>
-							  	<?php if(!empty($button_price['te_price_button_img'])): ?>
-							 		<!-- <img src="<?php //echo esc_url($button_price['te_price_button_img']['url']); ?>" alt=""> -->
-									 <!-- <i class="fa-solid fa-arrow-right"></i> -->
-									 <?php Icons_Manager::render_icon( $button_price['te_price_button_img'], [ 'aria-hidden' => 'true' ] ); ?>
-								<?php endif; ?>
-							</a>
-						</div>
-						<?php 
+                <div class="price_item">
+                    <a href="<?php echo esc_url($button_price['price_button_url']); ?>"
+                        class="<?php if($i==2){ echo 'price_btn btn_hover'; }else{ echo 'theme_btn_text'; } ?> ">
+                        <?php echo $button_price['price_button_text']; ?>
+                        <?php if(!empty($button_price['te_price_button_img'])): ?>
+                        <!-- <img src="<?php //echo esc_url($button_price['te_price_button_img']['url']); ?>" alt=""> -->
+                        <!-- <i class="fa-solid fa-arrow-right"></i> -->
+                        <?php Icons_Manager::render_icon( $button_price['te_price_button_img'], [ 'aria-hidden' => 'true' ] ); ?>
+                        <?php endif; ?>
+                    </a>
+                </div>
+                <?php 
 							$i++;
 							endforeach;
 							}
 						?>
-					</div>
-				</div>
-			</div>
-	</section>
-    <?php
+            </div>
+        </div>
+    </div>
+</section>
+<?php
     }
 
 

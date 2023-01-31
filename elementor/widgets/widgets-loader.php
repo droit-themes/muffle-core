@@ -181,10 +181,10 @@ class Widgets_Loader{
 	            'css' => ['video_popup.css', 'magnify-pop/magnific-popup.css'],
 	            'source' => 'local',
             ],
-            'muffly-pricing' => [
-	            'title' => __( 'Muffly Pricing', 'muffle-coro' ),
-	            'js' => ['muffly-pricing.js'],
-	            'css' => ['css/muffly-pricing.css'],
+            'muffly-pricing-table' => [
+	            'title' => __( 'Muffly Pricing Table', 'muffle-coro' ),
+	            'js' => ['muffly-pricing-table.js'],
+	            'css' => ['css/muffly-pricing-table.css'],
 	            'source' => 'local',
             ],
             'testimonial-pro' => [
