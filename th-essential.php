@@ -7,7 +7,7 @@
 Plugin Name: Muffle Core
 Plugin URI: https://droitthemes.com/
 Description: Droit Elementor Addons is a bundle of super useful widgets. This Elementor compatible plugin is easy to use and you can customize different features as you like. Just plug and play.
-Version: 1.0.0
+Version: 1.0.1
 Author: DroitThemes
 Author URI: https://droitthemes.com/
 License: GPLv3
@@ -22,7 +22,7 @@ defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
 /**
  * Constant
  * Feature added by : DroitLab Team
- * @since 1.0.0
+ * @since 1.0.1
  */
 
 define('DRO_TH_ESS', __FILE__);
