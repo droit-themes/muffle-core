@@ -165,7 +165,7 @@ class Widgets_Loader{
 
             'team-member' => [
 	            'title' => __( 'Team Member', 'muffle-coro' ),
-	            'js' => [''],
+	            'js' => ['team-member.js'],
 	            'css' => ['team-member.css'],
 	            'source' => 'local',
             ],

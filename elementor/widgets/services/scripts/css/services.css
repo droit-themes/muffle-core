@@ -220,3 +220,27 @@ img.service_img {
     margin-bottom: 25px;
   }
 }
+
+.service_two .swiper-container-horizontal > .swiper-pagination-bullets,
+.service_two .swiper-pagination-custom,
+.service_two .swiper-pagination-fraction {
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+}
+
+.service_two .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 10px !important;
+}
+
+.service_two .swiper-pagination-bullets .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #0f0f0f;
+}
+
+.service_two
+  .swiper-pagination-bullets
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #0f0f0f;
+}

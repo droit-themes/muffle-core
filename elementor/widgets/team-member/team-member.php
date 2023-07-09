@@ -54,6 +54,10 @@ class DRTH_ESS_Team_Member extends Widget_Base{
 						'title' => __( 'Team Two', 'muffle-core' ),
 						'icon' => 'team_02',
 					],
+                    '3' => [
+						'title' => __( 'Team Three', 'muffle-core' ),
+						'icon' => 'team_03',
+					],
 				],
 				'default' => '1'
 			]
@@ -290,6 +294,37 @@ class DRTH_ESS_Team_Member extends Widget_Base{
         </div>
     </div>
 </section>
+<?php } elseif( $team_style == 3 ){ ?>
+    <section class="team_three team team_style_two">
+        <div class="team-section">
+            <div class="swiper-wrapper">
+                <?php
+                        while( $team_member->have_posts()):
+                            $team_member->the_post();
+                            $designation = function_exists( 'get_field' ) ? get_field( 'designation' ) : '';
+                    ?>
+
+                <div class="swiper-slide author-content">
+                    <div class="team_item">
+                        <?php if(has_post_thumbnail()): ?>
+                        <div class="team-thumbnail">
+                            <?php the_post_thumbnail('full', array( 'class' => 'author-img img-fluid' )); ?>
+                        </div>
+                        <?php endif; ?>
+                        <div class="team_content">
+                            <a href="<?php the_permalink(); ?>" class="author-name">
+                                <h3 class="author-name"><?php the_title(); ?></h3>
+                            </a>
+                            <h4 class="author-designation"><?php echo $designation; ?></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <?php endwhile; ?>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
 <?php }else{ } ?>
 <?php 
     }
@@ -299,6 +334,37 @@ class DRTH_ESS_Team_Member extends Widget_Base{
             ?>
 <script>
 (function($) {
+    // team slider
+    var teamswiper = new Swiper(".team-section", {
+            speed: 2500,
+            slidesPerView: 3,
+            centeredSlides: true,
+            spaceBetween: 10,
+            loop: true,
+            loopedSlides: 3,
+            autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            },
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            },
+            breakpoints: {
+            340: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            },
+    });
 
     //popular courses js
     document.addEventListener("mouseover", parallax);

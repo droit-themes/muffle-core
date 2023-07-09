@@ -3,7 +3,7 @@
 jQuery(function ($) {
   'use strict'
 
-  var serviceSwiper = new Swiper('.service_slider', {
+  var teamswiper = new Swiper('.team-section', {
     speed: 2500,
     slidesPerView: 3,
     centeredSlides: true,
@@ -24,11 +24,11 @@ jQuery(function ($) {
         spaceBetween: 20,
       },
       768: {
-        slidesPerView: 2,
+        slidesPerView: 3,
         spaceBetween: 20,
       },
       1024: {
-        slidesPerView: 3.5,
+        slidesPerView: 3,
         spaceBetween: 20,
       },
     },

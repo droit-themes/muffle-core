@@ -1,6 +1,7 @@
 .team {
   background-repeat: no-repeat;
   background-size: contain;
+  overflow: hidden;
 }
 .container {
   width: 1290px;
@@ -117,7 +118,7 @@
   z-index: 0;
 }
 .team_style_one .team_item .team-thumbnail::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -147,4 +148,28 @@
 }
 .team_item a h3 {
   transition: all 0s;
+}
+
+.team_three .swiper-container-horizontal > .swiper-pagination-bullets,
+.team_three .swiper-pagination-custom,
+.team_three .swiper-pagination-fraction {
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+}
+
+.team_three .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 10px !important;
+}
+
+.team_three .swiper-pagination-bullets .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #0f0f0f;
+}
+
+.team_three
+  .swiper-pagination-bullets
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #0f0f0f;
 }

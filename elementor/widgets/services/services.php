@@ -60,10 +60,10 @@ class DRTH_ESS_Services extends Widget_Base{
 			[
 				'label' => esc_html__( 'Style', 'muffle-core' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'default' => 'one',
+				'default' => '1',
 				'options' => [
-					'one' => esc_html__( 'Style One', 'muffle-core' ),
-					'two' => esc_html__( 'Style Two', 'muffle-core' ),
+					'1' => esc_html__( 'Style One', 'muffle-core' ),
+					'2' => esc_html__( 'Style Two', 'muffle-core' ),
 				],
 			]
 		);
@@ -258,7 +258,9 @@ class DRTH_ESS_Services extends Widget_Base{
     //Html render
     protected function render()
     {   
+        $this->load_widget_script();
         $settings = $this->get_settings_for_display();
+        $service_style	= !empty($settings['service_style']) ? $settings['service_style'] : '1';
 
         $style_design = $settings['exclude'] ;
 
@@ -279,6 +281,7 @@ class DRTH_ESS_Services extends Widget_Base{
         ) );
     ?>
 
+    <?php if( $service_style == 1 ){ ?>
     <div class="all-col">
             <div class="col-lg-12">
                 <div class="row">  
@@ -306,9 +309,81 @@ class DRTH_ESS_Services extends Widget_Base{
                 </div>
             </div>
     </div>
-    
-<?php 
-  }
+    <?php } elseif( $service_style == 2 ){ ?>
+            <div class="service_two all-col">
+                <div class="service_slider">
+                    <div class="swiper-wrapper">  
+                        <?php
+                            while ( $blogPost->have_posts() ) {
+                            $blogPost->the_post();
+                            $service_icon_images     = function_exists( 'get_field' ) ? get_field( 'service_icon_images' ) : '';
+                        ?>
+                            <div class="swiper-slide">
+                                <div class="fung-2">
+                                    <div class="single-col">
+                                    <?php the_post_thumbnail('full', array('class' => 'service_img')); ?>
+                                        <div class="sub-content-2">
+                                            <a class="service_title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                            <div class="service_content"><?php echo the_excerpt(); ?></div>
+                                            <a href="<?php the_permalink(); ?>" class="learn_btn_two service_more">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        wp_reset_postdata();
+                        ?> 
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+    <?php }else{ } ?>
+    <?php 
+    }
+
+    public function load_widget_script(){
+        if( \Elementor\Plugin::$instance->editor->is_edit_mode() === true  ) {
+            ?>
+<script>
+(function($) {
+    // slider
+    var serviceSwiper = new Swiper('.service_slider', {
+    speed: 2500,
+    slidesPerView: 3,
+    centeredSlides: true,
+    spaceBetween: 10,
+    loop: true,
+    loopedSlides: 3,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3.5,
+        spaceBetween: 20,
+      },
+    },
+  })
+
+})(jQuery);
+</script>
+<?php
+        }
+    }
 
 protected function content_template()
     {}
