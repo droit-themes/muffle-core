@@ -196,3 +196,14 @@
     display: none;
   }
 }
+
+
+/* new style 02 */
+.banners_2 .dl_swiper_banner_pagination {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  bottom: 50% !important;
+  left: 70px !important;
+}
+/* new style 02 */

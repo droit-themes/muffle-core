@@ -34,6 +34,28 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
     {
         do_action('dl_widgets/test/register_control/start', $this);
 
+        $this->start_controls_section(
+            'muffle_banner_style',
+            [
+                'label' => __('Banner Style', 'muffle-core'),
+            ]
+        );
+
+        $this->add_control(
+			'banner_style',
+			[
+				'label' => esc_html__( 'Style', 'muffle-core' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => '1',
+				'options' => [
+					'1' => esc_html__( 'Style One', 'muffle-core' ),
+					'2' => esc_html__( 'Style Two', 'muffle-core' ),
+				],
+			]
+		);
+
+        $this->end_controls_section();
+
         // add content 
         $this->_content_control();
          //style section
@@ -62,8 +84,6 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 
         
         $this->_dl_banner_slider_option_controls();
-        $this-> _dl_thumbnail_option_controls();
-        $this-> _dl_thumbnail_content_controls();
     }
 
     // Testimonial Repeater
@@ -685,253 +705,6 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                 'default' => 'yes',
             ]
         );
-
-        $this->add_control(
-            'dl_banner_slider_thumb',
-            [
-                'label' => __( 'Thumbnail Gallery Settings', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::HEADING,
-                'separator' => 'before',
-            ]
-        );
-        $this->add_control(
-            'dl_thumbsEnable',
-            [
-                'label' => esc_html__('ThumbGallery', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'droit-addons-pro'),
-                'label_off' => esc_html__('No', 'droit-addons-pro'),
-                'return_value' => 'yes',
-                'default' => 'label_off',
-                'separator' => 'before'
-            ]
-        );
-        $this->end_controls_section();
-    }
-
-    public function _dl_thumbnail_option_controls()
-    {
-        $this->start_controls_section(
-            '_dl_thumbnail_slider_options_section',
-            [
-                'label' => esc_html__('Thumbnail Settings', 'droit-addons-pro'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-                'condition' => [
-                    'dl_thumbsEnable' => ['yes'],
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'dl_thumnail_slider_perpage',
-            [
-                'label' => __( 'Perpage', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 100,
-                'step' => 1,
-                'default' => 2,
-            ]
-        );
-        $this->add_control(
-            'dl_thumnail_slider_space',
-            [
-                'label' => __( 'Space Between', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 0,
-                'max' => 100,
-                'step' => 1,
-                'default' => 10,
-            ]
-        );
-        $this->add_control(
-            'dl_thumbnail_slider_centered',
-            [
-                'label' => __('Centered', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'default' => 'no',
-                'return_value' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'dl_thumbnail_breakpoints_enable',
-            [
-                'label' => esc_html__('Responsive', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'droit-addons-pro'),
-                'label_off' => esc_html__('No', 'droit-addons-pro'),
-                'return_value' => 'yes',
-                'default' => 'label_off',
-                'separator' => 'before'
-            ]
-        );
-        
-        $repeater = new \Elementor\Repeater();
-        $repeater->add_control(
-            'dl_thumbnail_breakpoints_width',
-            [
-                'label' => __('Max Width', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 0,
-                'max' => 3000,
-                'step' => 1,
-                'default' => '',
-            ]
-        );
-        $repeater->add_control(
-            'dl_thumbnail_breakpoints_perpage',
-            [
-                'label' => __('Slides Per View', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 0,
-                'max' => 10,
-                'step' => 1,
-                'default' => 1,
-            ]
-        );
-        $repeater->add_control(
-            'dl_thumbnail_breakpoints_space',
-            [
-                'label' => __('Space Between', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 0,
-                'max' => 1000,
-                'step' => 1,
-                'default' => 30,
-            ]
-        );
-        $repeater->add_control(
-            'dl_thumbnail_breakpoints_center',
-            [
-                'label' => esc_html__('Center', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'droit-addons-pro'),
-                'label_off' => esc_html__('No', 'droit-addons-pro'),
-                'return_value' => 'yes',
-                'default' => 'no',
-            ]
-        );
-
-        do_action('dl_widgets/adslider/settings/repeater', $repeater);
-        
-        $this->add_control(
-            'dl_thumbnail_breakpoints',
-            [
-                'label' => __('Content', 'droit-addons-pro'),
-                'show_label' => false,
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'default' => [
-                    [
-                        'dl_thumbnail_breakpoints_width' => 1440,
-                        'dl_thumbnail_breakpoints_perpage' => 1,
-                        'dl_thumbnail_breakpoints_space' => 30,
-                    ],
-                    [
-                        'dl_thumbnail_breakpoints_width' => 1024,
-                        'dl_thumbnail_breakpoints_perpage' => 1,
-                        'dl_thumbnail_breakpoints_space' => 30,
-                    ],
-                    [
-                        'dl_thumbnail_breakpoints_width' => 768,
-                        'dl_thumbnail_breakpoints_perpage' => 1,
-                        'dl_thumbnail_breakpoints_space' => 30,
-                    ],
-                    [
-                        'dl_thumbnail_breakpoints_width' => 576,
-                        'dl_thumbnail_breakpoints_perpage' => 1,
-                        'dl_thumbnail_breakpoints_space' => 30,
-                    ],
-
-                ],
-                'title_field' => 'Max Width: {{{ dl_thumbnail_breakpoints_width }}}',
-                'condition' => [
-                    'dl_thumbnail_breakpoints_enable' => ['yes'],
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    // Slider Thumbnail 
-    public function _dl_thumbnail_content_controls()
-    {
-        $this->start_controls_section(
-            '_dl_thumbnail_slider_content_section',
-            [
-                'label' => esc_html__('Thumbnail Content', 'droit-addons-pro'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-                'condition' => [
-                    'dl_thumbsEnable' => ['yes'],
-                ],
-            ]
-        );
-
-        $repeater = new \Elementor\Repeater();
-
-        $repeater->add_control(
-            '_dl_thumbnail_number', [
-                'label'       => __('Number', 'droit-addons-pro'),
-                'type'        => \Elementor\Controls_Manager::NUMBER,
-                'placeholder' => __('Enter Name', 'droit-addons-pro'),
-                'default'     => __('', 'droit-addons-pro'),
-                'label_block' => true,
-            ]
-        );
-
-        $repeater->add_control(
-            '_dl_thumbnail_title', [
-                'label'       => __('Title', 'droit-addons-pro'),
-                'type'        => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => __('Enter Name', 'droit-addons-pro'),
-                'default'     => __('', 'droit-addons-pro'),
-                'label_block' => true,
-            ]
-        );
-
-        $repeater->add_control(
-            '_dl_thumbnail_content', [
-                'label' => __('Content', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'placeholder' => __('Enter Content', 'droit-addons-pro'),
-                'default' => __('Enter Content', 'droit-addons-pro'),
-                'label_block' => true,
-            ]
-        );
-
-        $repeater->add_control(
-            'dl_thumb_image',
-			[
-				'label' => esc_html__( 'Thumb Image', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::MEDIA,
-				'default' => [
-					'url' => \Elementor\Utils::get_placeholder_image_src(),
-				],
-			]
-        );
-        
-        do_action('dl_widgets/adslider/settings/repeater', $repeater);
-        $this->add_control(
-            '_dl_thumb_item_list',
-            [
-                'label' => __('Thumbnail', 'droit-addons-pro'),
-                'show_label' => false,
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'default' => [
-                    [
-                        '_dl_thumbnail_number' => __('01', 'droit-addons-pro'),
-                        '_dl_thumbnail_title' => __('Education', 'droit-addons-pro'),
-                        '_dl_thumbnail_content' => __(' “Droitadons presents your services with flexible, convenient and multipurpose layouts.“', 'droit-addons-pro'),
-                    ],
-
-                ],
-                'title_field' => '{{{ _dl_thumbnail_title }}}',
-            ]
-        );
-
         $this->end_controls_section();
     }
 
@@ -941,7 +714,6 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
         $this->_dl_banner_btn_style();
         $this->_dl_banner_btn_style_two();
         $this->_dl_banner_icon();
-        $this->_dl_banner_thumnail_style();
         $this->_dl_banner_nav_style();
 
     }
@@ -985,7 +757,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
             [
                 'name' => 'banner_sub_typo',
                 'label' => __('Sub Title', 'droit-addons-pro'),
-                'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h3',
+                'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content h3',
                 'fields_options' => [
                     'typography' => [
                         'default' => '',
@@ -1047,7 +819,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => esc_html__( 'Sub Title', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h3' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content h3' => 'color: {{VALUE}}',
 				],
 			]
 		); 
@@ -1085,7 +857,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
             [
                 'name' => 'banner_content_title',
                 'label' => __('Title Typography', 'droit-addons-pro'),
-                'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h2',
+                'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content h2',
                 'fields_options' => [
                     'typography' => [
                         'default' => '',
@@ -1147,7 +919,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => esc_html__( 'Title Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h2' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content h2' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -1159,7 +931,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                 'label' => esc_html__( 'Title Margin', 'muffle-core' ),
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content h2' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .dl_banner_slider .banner_slider_content h2' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1169,7 +941,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
             [
                 'name' => 'banner_content_paragraph',
                 'label' => __('Description Typography', 'droit-addons-pro'),
-                'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content p',
+                'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content p',
                 'fields_options' => [
                     'typography' => [
                         'default' => '',
@@ -1231,7 +1003,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => esc_html__( 'Desc Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content p' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content p' => 'color: {{VALUE}}',
 				],
 			]
 		); 
@@ -1242,7 +1014,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                 'label' => esc_html__( 'Content Margin', 'muffle-core' ),
                 'size_units' => [ 'px', 'em', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .dl_banner_slider .banner_slider_content p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1268,7 +1040,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 					'size' => 10,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
         );
@@ -1302,7 +1074,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
             [
                 'name' => '_dl_banner_btn_typography',
                 'label' => __( 'Typography', 'droit-addons-pro' ),
-                'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content a.theme_btn',
+                'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content a.theme_btn',
             ]
         );
 
@@ -1312,7 +1084,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'name' => '_dl_banner_btn_background',
 				'label' => __( 'Background', 'droit-addons-pro' ),
 				'types' => [ 'classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn',
 			]
 		);
 
@@ -1322,7 +1094,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -1333,7 +1105,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px'],
                 'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1342,7 +1114,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 			[
 				'name' => '_dl_banner_btn_border',
 				'label' => __( 'Border', 'droit-addons-pro' ),
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn',
 			]
 		);
         $this->add_control(
@@ -1352,7 +1124,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -1362,7 +1134,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 			[
 				'name' => '_dl_banner_btn_shadow',
 				'label' => __( 'Box Shadow', 'droit-addons-pro' ),
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn',
 			]
 		);
 
@@ -1380,7 +1152,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'name' => '_dl_banner_btn_hover_background',
 				'label' => __( 'Background', 'droit-addons-pro' ),
 				'types' => [ 'classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn:hover',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn:hover',
 			]
 		);
         $this->add_control(
@@ -1389,7 +1161,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn:hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -1399,7 +1171,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Border Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn:hover' => 'border-color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn:hover' => 'border-color: {{VALUE}}',
 				],
 			]
 		);
@@ -1409,7 +1181,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 			[
 				'name' => '_dl_banner_btn_hover_box_shadow',
 				'label' => __( 'Box Shadow', 'droit-addons-pro' ),
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn:hover',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn:hover',
 			]
 		);
 
@@ -1438,12 +1210,23 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Normal', 'droit-addons-pro' ),
 			]
 		);
+        $this->add_responsive_control(
+            '_dl_btn_margin',
+            [
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__( 'Title Margin', 'muffle-core' ),
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => '_dl_banner_btn_typography_two',
                 'label' => __( 'Typography', 'droit-addons-pro' ),
-                'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two ',
+                'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two ',
             ]
         );
 		$this->add_group_control(
@@ -1452,7 +1235,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'name' => '_dl_banner_btn_background_two',
 				'label' => __( 'Background', 'droit-addons-pro' ),
 				'types' => [ 'classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two',
 			]
 		);
         $this->add_control(
@@ -1461,7 +1244,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -1472,7 +1255,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px'],
                 'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1481,7 +1264,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 			[
 				'name' => '_dl_banner_btn_border_two',
 				'label' => __( 'Border', 'droit-addons-pro' ),
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two',
 			]
 		);
         $this->add_control(
@@ -1491,7 +1274,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%'],
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -1501,7 +1284,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 			[
 				'name' => '_dl_banner_btn_box_shadow_two',
 				'label' => __( 'Box Shadow', 'droit-addons-pro' ),
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two',
 			]
 		);
 
@@ -1519,7 +1302,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'name' => '_dl_banner_btn_hover_background_two',
 				'label' => __( 'Background', 'droit-addons-pro' ),
 				'types' => [ 'classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two:hover',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two:hover',
 			]
 		);
         $this->add_control(
@@ -1528,7 +1311,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two:hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -1538,7 +1321,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Border Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two:hover' => 'border-color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two:hover' => 'border-color: {{VALUE}}',
 				],
 			]
 		);
@@ -1547,7 +1330,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 			[
 				'name' => '_dl_banner_btn_hover_box_shadow_two',
 				'label' => __( 'Box Shadow', 'droit-addons-pro' ),
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content .theme_btn_two:hover',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content .theme_btn_two:hover',
 			]
 		);
 
@@ -1589,7 +1372,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                     'size' => 35,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content a span.droit-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .dl_banner_slider .banner_slider_content a span.droit-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1600,7 +1383,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'name' => '_dl_banner_btn_icon_background',
 				'label' => __( 'Icon Background', 'droit-addons-pro' ),
 				'types' => [ 'classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content a span.icon',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content a span.icon',
 			]
 		);
         $this->add_control(
@@ -1609,7 +1392,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content a span.icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content a span.icon' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -1620,7 +1403,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px'],
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content a span.icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content a span.icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -1640,7 +1423,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'name' => '_dl_banner_btn_hover_icon_background',
 				'label' => __( 'Icon Background', 'droit-addons-pro' ),
 				'types' => [ 'classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content a:hover span.icon',
+				'selector' => '{{WRAPPER}} .dl_banner_slider .banner_slider_content a:hover span.icon',
 			]
 		);
 
@@ -1650,7 +1433,7 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'label' => __( 'Color', 'droit-addons-pro' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider .dl_container .banner_slider_content a:hover span.icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .dl_banner_slider .banner_slider_content a:hover span.icon' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -1660,488 +1443,6 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 
         $this->end_controls_section();
     } 
-
-    public function _dl_banner_thumnail_style()
-    {
-        $this->start_controls_section(
-            '_dl_banner_thumbnail_style_section',
-            [
-                'label' => esc_html__('Thumbnail Setting', 'droit-addons-pro'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'dl_thumbsEnable' => ['yes'],
-                ],
-            ]
-        );
-
-        $this->start_controls_tabs(
-			'_dl_banner_thumbnail_style_tabs'
-		);
-
-		$this->start_controls_tab(
-			'_dl_banner_thumbnail_style_normal_tab',
-			[
-				'label' => __( 'Normal', 'droit-addons-pro' ),
-			]
-		);
-        $this->add_responsive_control(
-			'_dl_banner_thumbnail_size',
-			[
-				'label' => __( 'Size', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 100,
-						'step' => 1,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'default' => [
-					'unit' => '%',
-					'size' => 100,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-        $this->add_control(
-            '_dl_banner_thumbnail_position_control',
-            [
-                'label' => esc_html__('Position', 'droit-addons-pro'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'label_block' => false,
-                'options' => [
-                    'relative'  => __( 'Default', 'droit-addons-pro' ),
-                    'absolute'  => __( 'Absolute', 'droit-addons-pro' ),
-                    'fixed'     => __( 'Fixed', 'droit-addons-pro' ),
-                ],
-                'default' => 'relative',
-                'selectors' => [
-                '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs' => 'position: {{VALUE}}',],
-            ]
-        );
-
-        $this->add_control(
-            'dl_thumbnail_position',
-            [
-                'label' => __( '', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
-                'label_off' => __( 'Default', 'droit-addons-pro' ),
-                'label_on' => __( 'Custom', 'droit-addons-pro' ),
-                'return_value' => 'yes',
-                'condition' => [
-                    '_dl_banner_thumbnail_position_control' => ['absolute', 'relative', 'fixed']
-                ]
-            ]
-        );
-
-        $this->start_popover();
-
-        $start = is_rtl() ? __( 'Right', 'droit-addons-pro' ) : __( 'Left', 'droit-addons-pro' );
-        $end = ! is_rtl() ? __( 'Right', 'droit-addons-pro' ) : __( 'Left', 'droit-addons-pro' );
-
-        $this->add_control(
-            'dl_offset_orientation_h',
-            [
-                'label' => __( 'Horizontal Orientation', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'toggle' => false,
-                'default' => 'start',
-                'options' => [
-                    'start' => [
-                        'title' => $start,
-                        'icon' => 'eicon-h-align-left',
-                    ],
-                    'end' => [
-                        'title' => $end,
-                        'icon' => 'eicon-h-align-right',
-                    ],
-                ],
-                'classes' => 'elementor-control-start-end',
-                'render_type' => 'ui',
-               
-            ]
-        );
-
-        $this->add_responsive_control(
-            'dl_offset_x',
-            [
-                'label' => __( 'Offset', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => -1000,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                    'vw' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                    'vh' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                ],
-                'default' => [
-                    'size' => '0',
-                ],
-                'size_units' => [ 'px', '%', 'vw', 'vh' ],
-                'selectors' => [
-                    'body:not(.rtl) {{WRAPPER}} .dl_banner_slider_area .gallery-thumbs' => 'left: {{SIZE}}{{UNIT}}',
-                    'body.rtl {{WRAPPER}} .dl_banner_slider_area .gallery-thumbs' => 'right: {{SIZE}}{{UNIT}}',
-                ],
-                'condition' => [
-                    'dl_offset_orientation_h!' => 'end',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'dl_offset_x_end',
-            [
-                'label' => __( 'Offset', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => -1000,
-                        'max' => 1000,
-                        'step' => 0.1,
-                    ],
-                    '%' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                    'vw' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                    'vh' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                ],
-                'default' => [
-                    'size' => '0',
-                ],
-                'size_units' => [ 'px', '%', 'vw', 'vh' ],
-                'selectors' => [
-                    'body:not(.rtl) {{WRAPPER}} .dl_banner_slider_area .gallery-thumbs' => 'right: {{SIZE}}{{UNIT}}',
-                    'body.rtl {{WRAPPER}} .dl_banner_slider_area .gallery-thumbs' => 'left: {{SIZE}}{{UNIT}}',
-                ],
-                'condition' => [
-                    'dl_offset_orientation_h' => 'end',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'dl_offset_orientation_v',
-            [
-                'label' => __( 'Vertical Orientation', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'toggle' => false,
-                'default' => 'start',
-                'options' => [
-                    'start' => [
-                        'title' => __( 'Top', 'droit-addons-pro' ),
-                        'icon' => 'eicon-v-align-top',
-                    ],
-                    'end' => [
-                        'title' => __( 'Bottom', 'droit-addons-pro' ),
-                        'icon' => 'eicon-v-align-bottom',
-                    ],
-                ],
-                'render_type' => 'ui',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'dl_offset_y',
-            [
-                'label' => __( 'Offset', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => -1000,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                    'vh' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                    'vw' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                ],
-                'size_units' => [ 'px', '%', 'vh', 'vw' ],
-                'default' => [
-                    'size' => '0',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs' => 'top: {{SIZE}}{{UNIT}}',
-                ],
-                'condition' => [
-                    'dl_offset_orientation_v!' => 'end',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'dl_offset_y_end',
-            [
-                'label' => __( 'Offset', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => -1000,
-                        'max' => 1000,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                    'vh' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                    'vw' => [
-                        'min' => -200,
-                        'max' => 200,
-                    ],
-                ],
-                'size_units' => [ 'px', '%', 'vh', 'vw' ],
-                'default' => [
-                    'size' => '0',
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs' => 'bottom: {{SIZE}}{{UNIT}}',
-                ],
-                'condition' => [
-                    'dl_offset_orientation_v' => 'end',
-                ],
-            ]
-        );
-       
-        $this->end_popover();
-
-        $this->add_responsive_control(
-			'_dl_banner_thumbnail_padding_style',
-			[
-				'label' => __( 'Thumbnail Padding', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px'],
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => '_dl_thumbnail_number_typography',
-                'label' => __( 'Number Typography', 'droit-addons-pro' ),
-                'selector' => '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item .number',
-            ]
-        );
-        $this->add_control(
-			'_dl_thumbnail_number_color',
-			[
-				'label' => __( 'Number Color', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item .number' => 'color: {{VALUE}}',
-				],
-			]
-		);
-        $this->add_control(
-            '_dl_thumbnail_number_spacing',
-            [
-                'label' => __( 'Number Bottom Spacing', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px'],
-                'range' => [
-                    'px' => [
-                        'min' => -100,
-                        'max' => 100,
-                        'step' => 5,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item .number' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => '_dl_thumbnail_title_typography',
-                'label' => __( 'Title Typography', 'droit-addons-pro' ),
-                'selector' => '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item h4',
-            ]
-        );
-        $this->add_control(
-			'_dl_thumbnail_title_color',
-			[
-				'label' => __( 'Title Color', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item h4' => 'color: {{VALUE}}',
-				],
-			]
-		);
-        $this->add_control(
-            '_dl_thumbnail_title_spacing',
-            [
-                'label' => __( 'Title Bottom Spacing', 'droit-addons-pro' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px'],
-                'range' => [
-                    'px' => [
-                        'min' => -100,
-                        'max' => 100,
-                        'step' => 5,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item h4' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => '_dl_thumnail_content_typography',
-                'label' => __( 'Content Typography', 'droit-addons-pro' ),
-                'selector' => '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item p',
-            ]
-        );
-        $this->add_control(
-			'_dl_thumbnail_content_color',
-			[
-				'label' => __( 'Content Color', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .thumb_item p' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-        $this->add_control(
-			'dl_thumbnail_width',
-			[
-				'label' => esc_html__( 'Thumb Width', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .thumb_item img' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-        $this->add_control(
-			'dl_thumbnail_height',
-			[
-				'label' => esc_html__( 'Thumb Height', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 5,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .thumb_item img' => 'height: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-        
-        $this->end_controls_tab();
-        $this->start_controls_tab(
-			'_dl_banner_thumbnail_active_tab',
-			[
-				'label' => __( 'Active', 'droit-addons-pro' ),
-			]
-		);
-        $this->add_group_control(
-			\Elementor\Group_Control_Background::get_type(),
-			[
-				'name' => '_dl_banner_thumbnail_active_background',
-				'label' => __( 'Background', 'droit-addons-pro' ),
-				'types' => [ 'classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .swiper-slide-thumb-active .thumb_item',
-			]
-		);
-        $this->add_control(
-			'_dl_thumbnail_number_active_color',
-			[
-				'label' => __( 'Active Number Color', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .swiper-slide-thumb-active .thumb_item .number' => 'color: {{VALUE}}',
-				],
-			]
-		);
-        $this->add_control(
-			'_dl_thumbnail_title_active_color',
-			[
-				'label' => __( 'Active Title Color', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .swiper-slide-thumb-active .thumb_item h4' => 'color: {{VALUE}}',
-				],
-			]
-		);
-        $this->add_control(
-			'_dl_thumbnail_content_active_color',
-			[
-				'label' => __( 'Active Title Color', 'droit-addons-pro' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .dl_banner_slider_area .gallery-thumbs .swiper-slide-thumb-active .thumb_item p' => 'color: {{VALUE}}',
-				],
-			]
-		);
-        $this->end_controls_tab();
-		$this->end_controls_tabs();
-
-        $this->end_controls_section();
-    }
 
     public function _dl_banner_nav_style() {
         $this->start_controls_section(
@@ -2457,24 +1758,10 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
         $banner_settings['dl_mouseover'] = ($dl_banner_slider_mouseover_enable == 'yes') ? true : false;
         $banner_settings['dl_autoplay'] = $dl_banner_slider_autoplay;
 
-        if( $dl_thumbsEnable == 'yes'){
-            $thum['thumbsEnable'] = ($dl_thumbsEnable == 'yes') ? true : false;
-            $thum['spaceBetween'] = $dl_thumnail_slider_space;
-            $thum['slidesPerView'] = $dl_thumnail_slider_perpage;
-            $thum['centeredSlides'] = ($dl_thumbnail_slider_centered == 'no') ? false : true;
-            $thum['centeredSlides'] = ($dl_thumbnail_slider_centered == 'yes') ? true : false;
-        }
-
-        if( $dl_thumbnail_breakpoints_enable == 'yes'){
-            foreach($dl_thumbnail_breakpoints as $p=>$s){
-                $width = $s['dl_thumbnail_breakpoints_width'];
-                $thum['breakpoints'][$width]['slidesPerView'] = $s['dl_thumbnail_breakpoints_perpage'];
-                $thum['breakpoints'][$width]['spaceBetween'] = $s['dl_thumbnail_breakpoints_space'];
-                $thum['breakpoints'][$width]['centeredSlides'] = $s['dl_thumbnail_breakpoints_center'];
-            }
-        }
+        $banner_style	= !empty($settings['banner_style']) ? $settings['banner_style'] : '1';
         
         ?>
+    <?php if( $banner_style == 1 ){ ?>
             <section class="dl_banner_slider_area">
                 <div class="dl_banner_slider swiper-container dl-slider-<?php echo esc_attr($banner_id);?>" data-settings='<?php echo json_encode($banner_settings, true);?>'>
                 
@@ -2564,41 +1851,75 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
                         <div class="dl_swiper_banner_pagination dl_banner_pag<?php echo esc_attr($banner_id) ?>"></div>
                     <?php } ?>
                 </div>
+            </section>
+    <?php } elseif( $banner_style == 2 ){ ?>
+        <section class="banners_2 dl_banner_slider_area">
+                <div class="dl_banner_slider swiper-container dl-slider-<?php echo esc_attr($banner_id);?>" data-settings='<?php echo json_encode($banner_settings, true);?>'>
+                
+                    <div class="swiper-wrapper">
+                        <?php if (isset($_dl_banner_item_list) && !empty($_dl_banner_item_list)):
+                            foreach ($_dl_banner_item_list as $s):
+                        ?>
+                        <div class="swiper-slide slider_item slider_bg_color" style="background-image: url('<?php //echo esc_url( $s['_dl_banner_image']['url'] );?>');">
+                            <div class="">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-5">
+                                        <div class="banner_slider_content">
+                                            <?php if ( !empty($s['_dl_banner_sub_title']) ) : ?>
+                                                <h3>
+                                                    <?php echo esc_html($s['_dl_banner_sub_title'])?></h3>
+                                            <?php endif ?>
+                                            <?php if ( !empty($s['_dl_banner_title']) ) : ?>
+                                                <h2>
+                                                    <?php echo esc_html($s['_dl_banner_title'])?></h2>
+                                            <?php endif ?>
+                                            <?php if ( !empty($s['_dl_banner_content']) ) : ?>
+                                                <p>
+                                                    <?php echo esc_html($s['_dl_banner_content'])?>
+                                                </p>
+                                            <?php endif ?>
+                                            <?php if(!empty($s['_dl_banner_button_text'])) : ?>
+                                                <a href="<?php echo esc_url($s['_dl_banner_button_link']['url']);?>" class="theme_btn hover_btn">
+                                                    <?php echo esc_html($s['_dl_banner_button_text'])?>
+                                                </a>
+                                            <?php endif ?>
 
-                <?php if( $dl_thumbsEnable == 'yes') { ?>
-                    <div class="swiper-container gallery-thumbs dl-slider-thumbs-<?php echo esc_attr($banner_id);?>" data-settings='<?php echo json_encode($thum, true);?>'>
-                        <div class="swiper-wrapper">
-                            <?php if(isset($_dl_thumb_item_list) && !empty($_dl_thumb_item_list)):
-                                foreach ($_dl_thumb_item_list as $t):
-                            ?>
-                                <div class="swiper-slide">
-                                    <div class="thumb_item">
-                                        <?php if(!empty($t['_dl_thumbnail_number'])): ?>
-                                            <div class="number">
-                                                <?php echo esc_html($t['_dl_thumbnail_number']) ?>
-                                            </div>
-                                        <?php endif ?>
-                                        <?php if(!empty($t['_dl_thumbnail_title'])): ?>
-                                            <h4>
-                                                <?php echo esc_html($t['_dl_thumbnail_title']) ?>
-                                            </h4>
-                                        <?php endif ?>
-                                        <?php if(!empty($t['_dl_thumbnail_content'])): ?>
-                                            <p>
-                                                <?php echo esc_html($t['_dl_thumbnail_content']) ?>
-                                            </p>
-                                        <?php endif ?>
-                                        <?php if(!empty($t['dl_thumb_image'])): ?>
-                                            <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($t, 'thumbnail', 'dl_thumb_image'); ?>
-                                        <?php endif; ?>
+                                            <?php if(!empty($s['_dl_banner_button_two_text'])) : ?>
+                                                <a href="<?php echo esc_url($s['_dl_banner_button_two_link']['url']);?>" class="theme_btn_two hover_btn_two">
+                                                        <?php echo esc_html($s['_dl_banner_button_two_text'])?>
+                                                </a>
+                                            <?php endif ?>                                            
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html( $s, 'full', '_dl_banner_image' ); ?>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
                             <?php endforeach;
-                            endif; ?>
+                            
+                        endif;?>
+                    </div>
+        
+                    <?php if( $dl_banner_slider_enable_slide_control == 'yes'){?>
+                    <div class="dl_banner_swiper_navigation">
+                        <div class="swiper_banner_nav_button dl-slider-prev dl-slider-prev<?php echo esc_attr($banner_id) ?>">
+                            <?php \Elementor\Icons_Manager::render_icon( $settings['dl_banner_slider_nav_left_icon']); ?>
+                        </div>
+                        <div class="swiper_banner_nav_button dl-slider-next dl-slider-next<?php echo esc_attr($banner_id) ?>">
+                            <?php  \Elementor\Icons_Manager::render_icon( $settings['dl_banner_slider_nav_right_icon']); ?>
                         </div>
                     </div>
-                <?php  }  ?>
+                    <?php }
+                        if( $dl_banner_slider_pagination == 'yes'){?>
+                        <div class="dl_swiper_banner_pagination dl_banner_pag<?php echo esc_attr($banner_id) ?>"></div>
+                    <?php } ?>
+                </div>
             </section>
+    <?php }else{ } ?>
         <?php
     }
 
