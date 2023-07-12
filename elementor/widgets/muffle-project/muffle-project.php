@@ -287,6 +287,95 @@ class DRTH_ESS_Muffle_Project extends Widget_Base {
             ]
         );
 
+        //
+        $this->add_control(
+			'row_item_options',
+			[
+				'label' => esc_html__( 'Row and Item Margin Padding', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+        $this->add_responsive_control(
+            'service_row_padding',
+            [
+                'label' => __( 'Padding', 'droit-addons-pro' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px'],
+                'selectors' => [
+                    '{{WRAPPER}} .program_list_filter' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'service_row_margin',
+            [
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__( 'Margin', 'muffle-core' ),
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .program_list_filter' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'service_item_padding',
+            [
+                'label' => __( 'Padding', 'droit-addons-pro' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px'],
+                'selectors' => [
+                    '{{WRAPPER}} .grid-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'service_item_margin',
+            [
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'label' => esc_html__( 'Margin', 'muffle-core' ),
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .grid-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+         //
+         $this->add_control(
+			'image_border_radius_options',
+			[
+				'label' => esc_html__( 'Image Border Radius', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+        
+        $this->add_control(
+            'border_radius',
+            [
+                'label' => __( 'Border Radius', 'muffle-core' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .program_list_page .img-fluid.wp-post-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'border_radius_before',
+            [
+                'label' => __( 'Border Radius Before', 'muffle-core' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .program_list_page .project_item .project-thumbnail::before' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         
 
         $this->end_controls_section();
