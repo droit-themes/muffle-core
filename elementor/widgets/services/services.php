@@ -64,6 +64,7 @@ class DRTH_ESS_Services extends Widget_Base{
 				'options' => [
 					'1' => esc_html__( 'Style One', 'muffle-core' ),
 					'2' => esc_html__( 'Style Two', 'muffle-core' ),
+                    '3' => esc_html__( 'Style Three', 'muffle-core' ),
 				],
 			]
 		);
@@ -253,6 +254,58 @@ class DRTH_ESS_Services extends Widget_Base{
 
     $this->end_controls_section();   ///(Style) End The Blog Title Section
 
+    $this->start_controls_section(
+        'service_style_3', [
+            'label' => __( 'Service Style Three', 'muffle-core' ),
+            'tab'   => Controls_Manager::TAB_STYLE,
+            'condition' => [
+                'service_style' => '3',
+            ],
+        ]
+    );
+
+    $this->add_responsive_control(
+        'service_icons_padding',
+        [
+            'label' => __( 'Padding', 'muffle-core' ),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => [ 'px', 'em', '%' ],
+            'selectors' => [
+                '{{WRAPPER}} .service_icons' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+            'separator' => 'after',
+        ]
+    );
+    $this->add_group_control(
+        \Elementor\Group_Control_Box_Shadow::get_type(),
+        [
+            'name' => 'box_shadow_2',
+            'selector' => '{{WRAPPER}} .service_icons',
+        ]
+    );
+    $this->add_group_control(
+        \Elementor\Group_Control_Box_Shadow::get_type(),
+        [   
+            'label' => __( 'Hover Box Shadow', 'muffle-core' ),
+            'name' => 'box_shadow_3',
+            'selector' => '{{WRAPPER}} .service_icons:hover',
+        ]
+    );
+    $this->add_control(
+        'border_radius2',
+        [
+            'label' => __( 'Border Radius', 'muffle-core' ),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => [ 'px', '%' ],
+            'selectors' => [
+                '{{WRAPPER}} .service_icons' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+            'separator' => 'before',
+        ]
+    );
+
+    $this->end_controls_section();
+
     }
 
     //Html render
@@ -338,6 +391,34 @@ class DRTH_ESS_Services extends Widget_Base{
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
+    <?php } elseif( $service_style == 3 ){ ?>
+        <div class="all-col">
+            <div class="col-lg-12">
+                <div class="row">  
+                    <?php
+                        while ( $blogPost->have_posts() ) {
+                        $blogPost->the_post();
+                        $service_icon_images     = function_exists( 'get_field' ) ? get_field( 'service_icon_images' ) : '';
+                    ?>
+                        <div class="col-lg-4 col-md-6 col-sl-12">
+                            <div class="fung-2">
+                                <div class="single-col service_icons">
+                                   <img src="<?php echo $service_icon_images['url']; ?>" alt="">
+                                    <div class="sub-content-2">
+                                        <a class="service_title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                        <div class="service_content"><?php echo the_excerpt(); ?></div>
+                                        <a href="<?php the_permalink(); ?>" class="learn_btn_two service_more">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    wp_reset_postdata();
+                    ?> 
+                </div>
+            </div>
+        </div>
     <?php }else{ } ?>
     <?php 
     }

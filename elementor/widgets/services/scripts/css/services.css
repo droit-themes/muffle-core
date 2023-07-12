@@ -244,3 +244,12 @@ img.service_img {
   .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #0f0f0f;
 }
+
+/* service style 3 */
+.service_icons{
+  text-align: center;
+  background-color: #fff;
+}
+.service_icons img{
+  width: auto;
+}
