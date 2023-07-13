@@ -403,7 +403,9 @@ class DRTH_ESS_Services extends Widget_Base{
                         <div class="col-lg-4 col-md-6 col-sl-12">
                             <div class="fung-2">
                                 <div class="single-col service_icons">
-                                   <img src="<?php echo $service_icon_images['url']; ?>" alt="">
+                                    <div class="icon_box">
+                                        <img src="<?php echo $service_icon_images['url']; ?>" alt="">
+                                    </div>
                                     <div class="sub-content-2">
                                         <a class="service_title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                         <div class="service_content"><?php echo the_excerpt(); ?></div>

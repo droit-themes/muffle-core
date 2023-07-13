@@ -251,5 +251,15 @@ img.service_img {
   background-color: #fff;
 }
 .service_icons img{
-  width: auto;
+  width: 40px;
+  height: 40px;
+}
+.icon_box {
+  display: inline-flex;
+  position: relative;
+  background-color: black;
+  border-radius: 50%;
+  width: 88px;
+  height: 88px;
+  justify-content: center;
 }
