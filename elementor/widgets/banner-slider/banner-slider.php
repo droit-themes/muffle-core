@@ -849,6 +849,10 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 				'selectors' => [
 					'{{WRAPPER}} .dl_banner_slider' => 'height: {{SIZE}}{{UNIT}};',
 				],
+                'condition' => [
+                    'banner_style' => '1',
+                ],
+                
 			]
         );
         
@@ -1893,8 +1897,10 @@ class Droit_Addons_Banner_Slider extends \Elementor\Widget_Base{
 
                                         </div>
                                     </div>
-                                    <div class="col-lg-5">
-                                        <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html( $s, 'full', '_dl_banner_image' ); ?>
+                                    <div class="col-lg-5 text-end">
+                                        <div class="hero_banner_img">
+                                            <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html( $s, 'full', '_dl_banner_image' ); ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
