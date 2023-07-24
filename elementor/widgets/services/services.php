@@ -456,7 +456,7 @@ class DRTH_ESS_Services extends Widget_Base{
         spaceBetween: 20,
       },
       1024: {
-        slidesPerView: 3.5,
+        slidesPerView: 3,
         spaceBetween: 20,
       },
     },

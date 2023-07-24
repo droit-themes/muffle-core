@@ -28,7 +28,7 @@ jQuery(function ($) {
         spaceBetween: 20,
       },
       1024: {
-        slidesPerView: 3.5,
+        slidesPerView: 3,
         spaceBetween: 20,
       },
     },
