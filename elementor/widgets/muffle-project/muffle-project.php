@@ -287,6 +287,17 @@ class DRTH_ESS_Muffle_Project extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'active_bottom_border_color',
+            [
+                'label' => __( 'Active Border Color', 'muffle_core' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .program_list_page .filters ul .is-checked' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
         //
         $this->add_control(
 			'row_item_options',
@@ -375,6 +386,29 @@ class DRTH_ESS_Muffle_Project extends Widget_Base {
                 ],
             ]
         );
+
+        // circle style
+
+        $this->add_control(
+			'circle_options',
+			[
+				'label' => esc_html__( 'Circle Style', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'circle_background',
+                'label' => __( 'Background', 'muffle-core' ),
+                'types' => [ 'classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .project-thumbnail .plus_icons',
+            ]
+        );
+
+
 
         
 
