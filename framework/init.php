@@ -1,16 +1,10 @@
 <?php 
 
-//  add custom postype 
 $opt = get_option( 'muffle');
 $is_service_cpt = isset($opt['is_service_cpt']) ? $opt['is_service_cpt'] : '1';
-$slug = !empty($opt['service_slug']) ? strtolower(str_replace( ' ', '', $opt['service_slug'])) : $this->slug;
-//
 $is_project_cpt = isset($opt['is_project_cpt']) ? $opt['is_project_cpt'] : '1';
-$slug = !empty($opt['project_slug']) ? strtolower(str_replace( ' ', '', $opt['project_slug'])) : $this->slug;
-//
 $is_team_cpt = isset($opt['is_team_cpt']) ? $opt['is_team_cpt'] : '1';
-$slug = !empty($opt['team_slug']) ? strtolower(str_replace( ' ', '', $opt['team_slug'])) : $this->slug;
-//
+
 
 $custom_postype = new \Dt_custom_postype\Dt_CustomPosttype;
 $taxonomy = new \Dt_custom_postype\Dt_Taxonomies;
