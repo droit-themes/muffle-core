@@ -104,12 +104,12 @@ class Widgets_Loader{
                 'css' => [''],
                 'source' => 'addons',
             ],
-            'mini-cart' => [
-                'title' => __( 'Mini Cart', 'muffle-core' ),
-                'js' => [''],
-                'css' => [''],
-                'source' => 'addons',
-            ],
+            // 'mini-cart' => [
+            //     'title' => __( 'Mini Cart', 'muffle-core' ),
+            //     'js' => [''],
+            //     'css' => [''],
+            //     'source' => 'addons',
+            // ],
 
             'nav' => [
                 'title' => __( 'Roofy Nav', 'muffle-core' ),

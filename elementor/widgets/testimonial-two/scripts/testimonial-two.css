@@ -102,6 +102,28 @@
   font-size: 22px;
   font-weight: 400;
 }
+.gallery{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.gallery-slider{
+  overflow: hidden;
+}
+
+.gallery .swiper-pagination.swiper-pagination-bullets{
+  display: flex;
+  gap: 15px;
+}
+
+.gallery .swiper-container-horizontal > .swiper-pagination-bullets {
+  position: absolute;
+  bottom: 30px;
+  left: 47%;
+  z-index: 9999;
+}
+
 @media (max-width: 767px) {
   .gallery .pagi_btn {
     display: none;

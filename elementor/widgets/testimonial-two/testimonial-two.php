@@ -264,11 +264,16 @@ class DRTH_ESS_Testimonial_two extends Widget_Base {
         });
 
         var thumbs = new Swiper(".swiper-container.gallery-thumbs", {
+            speed: 2500,
             slidesPerView: 3,
             spaceBetween: 10,
             centeredSlides: true,
             loop: true,
             slideToClickedSlide: true,
+            autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            },
             
         });
         slider.controller.control = thumbs;
